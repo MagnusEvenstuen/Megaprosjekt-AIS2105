@@ -4,14 +4,15 @@
 ## Innhold
 - [Gruppe](#Gruppe)
 - [Om prosjektet](#Om-prosjektet)
+- [Viktige komandoer](#Viktige-komandoer)
 
 # Gruppe
 Prosjektgruppe 163
 
-Eldar Helseth
-Oliver Steinnes Gundersen
-Nikolai Dworacek
-Magnus Evenstuen
+Eldar Helseth &amp;
+Oliver Steinnes Gundersen &amp;
+Nikolai Dworacek &amp;
+Magnus Evenstuen &amp;
 
 # Om prosjektet
 I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker en UR5e-robot med et xxxx kamera og flytter rundt på kuber. 
