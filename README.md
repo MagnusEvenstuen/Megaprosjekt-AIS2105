@@ -4,6 +4,7 @@
 ## Innhold
 - [Gruppe](#Gruppe)
 - [Om prosjektet](#Om-prosjektet)
+- [Hva kan roboten gjøre](#Hva-kan-roboten-gjøre)
 - [Viktige komandoer](#Viktige-komandoer)
 
 # Gruppe
@@ -16,6 +17,9 @@ Magnus Evenstuen
 
 # Om prosjektet
 I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker en UR5e-robot med et xxxx kamera og flytter rundt på kuber. 
+
+# Hva kan roboten gjøre
+Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
 
 # Viktige komandoer
 ```
