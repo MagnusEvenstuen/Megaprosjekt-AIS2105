@@ -1,4 +1,4 @@
-# Megaprosjekt-AIS2105
+# Megaprosjekt
 # AIS2105 - Mekatronikk og robotikk
 
 ## Innhold
