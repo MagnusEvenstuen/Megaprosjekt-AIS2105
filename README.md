@@ -49,5 +49,7 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 
 # IP Oppsett
 IP address: 143.25.150.72
+
 Subnet mask: 255.255.252.0
+
 Default gateway 143.25.151.0
