@@ -6,7 +6,7 @@
 - [Om prosjektet](#Om-prosjektet)
 - [Hva kan roboten gjøre](#Hva-kan-roboten-gjøre)
 - [Viktige komandoer](#Viktige-komandoer)
-
+- [IP Oppsett](#IP-Oppsett)
 # Gruppe
 Prosjektgruppe 163
 
@@ -30,3 +30,24 @@ colcon build --packages-select qube_bringup  # Bygger kun den spesifiserte pakke
 ```
 ```
 source install/setup.bash  # Kilde oppsett etter bygging
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller headless_mode:=true
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller
+```
+```
+ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
+```
+
+# IP Oppsett
+IP address: 143.25.150.72
+Subnet mask: 255.255.252.0
+Default gateway 143.25.151.0
