@@ -53,3 +53,25 @@ IP address: 143.25.150.72
 Subnet mask: 255.255.252.0
 
 Default gateway 143.25.151.0
+
+
+# Styring fra extern laptop
+
+Før launch filene kjøres på surface nettbrettet så setter man domain ID med kommandoen:
+```
+export ROS_DOMAIN_ID=X
+```
+
+Og setter samme ID-en i begge terminalene samt terminalen på laptoppen.
+
+Sjekk at 'topics' kan leses på laptoppen med:
+```
+ros2 topic list
+```
+
+Deretter kan man kjøre:
+```
+ros2 run rviz2 rviz2
+```
+
+Og legge til 'motionPlanning' med ADD funksjonen. Man kan så gå inn på 'joints', gjøre endringer, så trykke 'plan' og 'execute'. Da skal roboten flytte seg! 
