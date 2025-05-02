@@ -109,3 +109,8 @@ Kalibrering (kameraet må kjøre i en egen terminal for å kalibrere):
 ```
 ros2 run camera_calibration cameracalibrator   --size 7x9   --square 0.02 --no-service-check   --ros-args   -r image:=/image_raw   -r camera_info:=/camera_info   -r set_camera_info:=/usb_cam/set_camera_info  # Husk å sjekk riktig antal ruter/ størrelse på rutene
 ```
+
+Om kamera ikkje køyrer, bruk denne kommandoen for å finne alle kamera tilkopla PC-en:
+```
+v4l2-ctl --list-devices
+```
