@@ -86,3 +86,26 @@ Og legge til 'motionPlanning' med ADD funksjonen. Man kan så gå inn på 'joint
 
 `colcon build --executor sequential`
 ```
+
+
+# Kamera
+
+Kjør integrert kamera:
+```
+ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0
+```
+
+Kjør tilkobla usb-kamera:
+```
+ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video2
+```
+
+Kjør kamera med kalibreringfil:
+```
+ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0 -p camera_info_url:=file:///home/user/ost.yaml # Pass på riktig plassering / filnamn
+```
+
+Kalibrering (kameraet må kjøre i en egen terminal for å kalibrere): 
+```
+ros2 run camera_calibration cameracalibrator   --size 7x9   --square 0.02 --no-service-check   --ros-args   -r image:=/image_raw   -r camera_info:=/camera_info   -r set_camera_info:=/usb_cam/set_camera_info  # Husk å sjekk riktig antal ruter/ størrelse på rutene
+```
