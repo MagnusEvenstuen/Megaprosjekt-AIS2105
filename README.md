@@ -12,7 +12,6 @@ Prosjektgruppe 163
 
 Eldar Helseth &amp;
 Oliver Steinnes Gundersen &amp;
-Nikolai Dworacek &amp;
 Magnus Evenstuen
 
 # Om prosjektet
