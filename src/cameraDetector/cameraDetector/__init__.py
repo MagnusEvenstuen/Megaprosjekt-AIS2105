@@ -4,6 +4,7 @@ from sensor_msgs.msg import Image
 from std_msgs.msg import Float64MultiArray, String
 import cv2
 from cv_bridge import CvBridge
+import numpy as np
 
 def findColoredQubes(image, findColor, threshold):
     #Gets the dimentions of the image
@@ -45,7 +46,7 @@ def findColoredQubes(image, findColor, threshold):
                 aspect_ratio = float(w)/h
 
                 #Allow aspect ratio between 0.8 and 1.2, meaning almost squares
-                if 0.8 <= aspect_ratio <= 1.2:
+                if 0.5 <= aspect_ratio <= 1.5:
                     #Checks if the area is big enough
                     if cv2.contourArea(approximation) > 50:
                         squareContours.append(approximation)
@@ -78,10 +79,10 @@ class DistancePublisherImageSubscriber(Node):
         super().__init__('distancePublisher')
         self.publisher = self.create_publisher(Float64MultiArray, 'distanceToQubeCenter', 10)
         #Add camera subscription and bridge
-        self.subscription = self.createSubscription(
+        self.subscription = self.create_subscription(
             Image,
-            'r_forearm_cam/image_raw',
-            self.imageCallback,
+            '/image_raw',
+            self.image_callback,
             10)
         self.bridge = CvBridge()
 
@@ -89,7 +90,7 @@ class DistancePublisherImageSubscriber(Node):
         #Convert ROS Image to OpenCV format
         cvImage = self.bridge.imgmsg_to_cv2(msg, "bgr8")
         # Process image to find squares
-        squareCenters = findColoredQubes(cvImage, findColor=2, threshold=50)
+        squareCenters = findColoredQubes(cvImage, findColor=2, threshold=10)
         
         if squareCenters:
             msg = Float64MultiArray()
