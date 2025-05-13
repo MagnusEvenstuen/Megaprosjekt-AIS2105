@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'cameraDetector'
+package_name = 'camera_detector'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'camera_detector = cameraDetector.__init__:main'
+            'camera_detector = camera_detector.__init__:main'
         ],
     },
 )
