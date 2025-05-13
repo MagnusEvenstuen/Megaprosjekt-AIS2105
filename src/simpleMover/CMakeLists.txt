@@ -13,6 +13,7 @@ find_package(geometry_msgs REQUIRED)
 
 # Create executable
 add_executable(simple_mover src/main.cpp)
+add_executable(simple_mover src/main2.cpp)
 target_include_directories(simple_mover PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
