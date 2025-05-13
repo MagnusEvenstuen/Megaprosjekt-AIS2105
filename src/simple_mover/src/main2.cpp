@@ -1,7 +1,7 @@
 #include <memory>
 
 #include <rclcpp/rclcpp.hpp>
-#include <moveit/move_group_interface/move_group_interface.h>
+#include <moveit/move_group_interface/move_group_interface.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 
 int main(int argc, char *argv[])
@@ -25,13 +25,13 @@ int main(int argc, char *argv[])
     node->declare_parameter<double>("rw", 0.04792805870236521);
 
     // Grab parameters into local vars
-    double rx = node->get_parameter("tx").as_double();
-    double ry = node->get_parameter("ty").as_double();
-    double rz = node->get_parameter("tz").as_double();
-    double tx = node->get_parameter("rx").as_double();
-    double ty = node->get_parameter("ry").as_double();
-    double tz = node->get_parameter("rz").as_double();
-    double tw = node->get_parameter("rw").as_double();
+    double tx = node->get_parameter("tx").as_double();
+    double ty = node->get_parameter("ty").as_double();
+    double tz = node->get_parameter("tz").as_double();
+    double rx = node->get_parameter("rx").as_double();
+    double ry = node->get_parameter("ry").as_double();
+    double rz = node->get_parameter("rz").as_double();
+    double rw = node->get_parameter("rw").as_double();
 
     // Logger
     auto logger = rclcpp::get_logger("hello_moveit2");
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     RCLCPP_INFO(
       logger,
       "Setting target pose: pos(%.3f, %.3f, %.3f) ori(%.3f, %.3f, %.3f, %.3f)",
-      px, py, pz, ox, oy, oz, ow
+      tx, ty, tz, rx, ry, rz, rw
     );
 
     move_group.setPoseTarget(target_pose);
