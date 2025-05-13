@@ -1,60 +1,78 @@
-// example no 1
 #include <memory>
 
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
+#include <geometry_msgs/msg/pose.hpp>
 
 int main(int argc, char *argv[])
 {
-    // Initialize ROS and create the Node
+    // Initialize ROS2
     rclcpp::init(argc, argv);
-    auto const node = std::make_shared<rclcpp::Node>(
+
+    // Create node with auto-param declaration
+    auto node = std::make_shared<rclcpp::Node>(
         "hello_moveit2",
-        rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
+        rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
+    );
 
-    // Create a ROS logger
-    auto const logger = rclcpp::get_logger("hello_moveit2");
+    // Declare parameters and defaults
+    node->declare_parameter<double>("tx", -0.40349150880660745);
+    node->declare_parameter<double>("ty", 0.21355450702058534);
+    node->declare_parameter<double>("tz", 0.35585479647433027);
+    node->declare_parameter<double>("rx", -0.9239217238827235);
+    node->declare_parameter<double>("ry", 0.3795637577378466);
+    node->declare_parameter<double>("rz", -0.0017038598898846053);
+    node->declare_parameter<double>("rw", 0.04792805870236521);
 
-    // Next step goes here
-    // Create the MoveIt MoveGroup Interface
+    // Grab parameters into local vars
+    double rx = node->get_parameter("tx").as_double();
+    double ry = node->get_parameter("ty").as_double();
+    double rz = node->get_parameter("tz").as_double();
+    double tx = node->get_parameter("rx").as_double();
+    double ty = node->get_parameter("ry").as_double();
+    double tz = node->get_parameter("rz").as_double();
+    double tw = node->get_parameter("rw").as_double();
+
+    // Logger
+    auto logger = rclcpp::get_logger("hello_moveit2");
+
+    // MoveIt! interface (make sure your MoveIt! setup has a group called "ur_manipulator")
     using moveit::planning_interface::MoveGroupInterface;
-    auto move_group_interface = MoveGroupInterface(node, "ur_manipulator");
+    MoveGroupInterface move_group(node, "ur_manipulator");
 
-    // Set a target Pose
-    auto const target_pose = []
-    {
-        geometry_msgs::msg::Pose msg;
-        msg.position.x = -0.3933126127234188;
-        msg.position.y = 0.026503709089177263;
-        msg.position.z = 0.06724240146988826;
+    // Build target pose from params
+    geometry_msgs::msg::Pose target_pose;
+    target_pose.position.x = tx;
+    target_pose.position.y = ty;
+    target_pose.position.z = tz;
+    target_pose.orientation.x = rx;
+    target_pose.orientation.y = ry;
+    target_pose.orientation.z = rz;
+    target_pose.orientation.w = rw;
 
-        msg.orientation.w = 0.035648981431307195;
-        msg.orientation.x = -0.9307598626729203;
-        msg.orientation.y = 0.3638028013564436;
-        msg.orientation.z = -0.007921482512807844;
-        return msg;
-    }();
-    move_group_interface.setPoseTarget(target_pose);
+    RCLCPP_INFO(
+      logger,
+      "Setting target pose: pos(%.3f, %.3f, %.3f) ori(%.3f, %.3f, %.3f, %.3f)",
+      px, py, pz, ox, oy, oz, ow
+    );
 
-    // Create a plan to that target pose
-    auto const [success, plan] = [&move_group_interface]
-    {
-        moveit::planning_interface::MoveGroupInterface::Plan msg;
-        auto const ok = static_cast<bool>(move_group_interface.plan(msg));
-        return std::make_pair(ok, msg);
-    }();
+    move_group.setPoseTarget(target_pose);
 
-    // Execute the plan
+    // Plan
+    moveit::planning_interface::MoveGroupInterface::Plan plan;
+    bool success = static_cast<bool>(move_group.plan(plan));
+
     if (success)
     {
-        move_group_interface.execute(plan);
+        RCLCPP_INFO(logger, "Planning succeeded, executing...");
+        move_group.execute(plan);
+        RCLCPP_INFO(logger, "Execution complete!");
     }
     else
     {
         RCLCPP_ERROR(logger, "Planning failed!");
     }
 
-    // Shutdown ROS
     rclcpp::shutdown();
     return 0;
 }
