@@ -24,13 +24,14 @@ int main(int argc, char *argv[])
     auto const target_pose = []
     {
         geometry_msgs::msg::Pose msg;
-        msg.orientation.w = -1.0;
-        msg.orientation.x = 0.0;
-        msg.orientation.y = 0.0;
-        msg.orientation.z = 0.0;
-        msg.position.x = 0.2;
-        msg.position.y = 0.3;
-        msg.position.z = 0.1;
+        msg.position.x = -0.3933126127234188;
+        msg.position.y = 0.026503709089177263;
+        msg.position.z = 0.06724240146988826;
+
+        msg.orientation.w = 0.035648981431307195;
+        msg.orientation.x = -0.9307598626729203;
+        msg.orientation.y = 0.3638028013564436;
+        msg.orientation.z = -0.007921482512807844;
         return msg;
     }();
     move_group_interface.setPoseTarget(target_pose);
