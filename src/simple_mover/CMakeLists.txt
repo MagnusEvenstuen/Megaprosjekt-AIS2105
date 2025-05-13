@@ -37,6 +37,11 @@ ament_target_dependencies(
 install(
   TARGETS hello_moveit mover_auto
   DESTINATION lib/${PROJECT_NAME}
+  
+)
+install(
+  DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 # ament package macro
