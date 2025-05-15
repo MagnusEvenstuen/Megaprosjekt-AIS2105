@@ -47,7 +47,7 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 ```
 
 # IP Oppsett
-IP address: 143.25.150.72
+IP address: 143.25.150.7
 
 Subnet mask: 255.255.252.0
 
@@ -113,3 +113,13 @@ Om kamera ikkje køyrer, bruk denne kommandoen for å finne alle kamera tilkopla
 ```
 v4l2-ctl --list-devices
 ```
+
+# Om pakkene
+
+### camera_detector
+camera_detector pakken bruker openCV til å detektere firkanter av forskjellige farger. Den ser på om mengden av den valgte fargen (fungerer bare med rød, blå og grønn) er større enn summen av de to andre fargene + en threshold verdi. Etter at forskjellige objekter er detektert sjekkes det hvor mange kanter det er på hver av de formene. Den står da bare igjen med former med 4 kanter og ingen kurver på de kantene. Så sees det på hvor kvadratisk de forskjellige firkantene er. 
+
+Denne måten å løse detektering av kuber på har både fordeler og ulemper. En fordel er at den er veldig god til å detektere firkanter som er røde, blå og grønne. Den er også ganske robust på kvadrat i forskjellige høyder og størrelser så lenge de er større enn den minste tillatte størrelsen i koden. Ulempa er at den ikke er så robust når det kommer til forskjellig orientasjon på kubene. Hvis kubene står diagonalt på bildet (balanserer på en kant) vil ikke pakken klare å detektere at det er en kube der.
+
+### simple_mover
+Denne pakken har vi hentet en del inspirasjon til fra https://github.com/dominikbelter/ros2_ur_moveit_examples/blob/main/src/hello_moveit.cpp. Den går ut på at vi setter posisjonen og orientasjonen til armen, og bruke moveit sin inverkinematikkløser til å gå til den riktige posisjonen. Dette gir alltid endestykke riktig posisjon og orientasjon, men har en utfordring med at ikke alle joints blir satt, så noen ganger kan deler av hånda til robotarmen komme i veien for kamera. Noen ganger vil også armen ta runder for å komme til riktig posisjon, dette kommer nok av hvordan inverskinematikken er laget.
