@@ -9,20 +9,11 @@ int main(int argc, char *argv[])
     // Initialize ROS2
     rclcpp::init(argc, argv);
 
-    // Create node with auto-param declaration
+    // Create node with auto-param declaration from launch file
     auto node = std::make_shared<rclcpp::Node>(
         "hello_moveit2",
         rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
     );
-
-    // Declare parameters and defaults
-    node->declare_parameter<double>("tx", -0.40349150880660745);
-    node->declare_parameter<double>("ty", 0.21355450702058534);
-    node->declare_parameter<double>("tz", 0.35585479647433027);
-    node->declare_parameter<double>("rx", -0.9239217238827235);
-    node->declare_parameter<double>("ry", 0.3795637577378466);
-    node->declare_parameter<double>("rz", -0.0017038598898846053);
-    node->declare_parameter<double>("rw", 0.04792805870236521);
 
     // Grab parameters into local vars
     double tx = node->get_parameter("tx").as_double();
@@ -51,9 +42,9 @@ int main(int argc, char *argv[])
     target_pose.orientation.w = rw;
 
     RCLCPP_INFO(
-      logger,
-      "Setting target pose: pos(%.3f, %.3f, %.3f) ori(%.3f, %.3f, %.3f, %.3f)",
-      tx, ty, tz, rx, ry, rz, rw
+        logger,
+        "Setting target pose: pos(%.3f, %.3f, %.3f) ori(%.3f, %.3f, %.3f, %.3f)",
+        tx, ty, tz, rx, ry, rz, rw
     );
 
     move_group.setPoseTarget(target_pose);
