@@ -20,6 +20,10 @@ def generate_launch_description():
                               description='Rotation Z'),
         DeclareLaunchArgument('rw', default_value='0.04792805870236521',
                               description='Rotation W'),
+        DeclareLaunchArgument('image_width', default_value='640',
+                              description='Image Width'),
+        DeclareLaunchArgument('image_height', default_value='480',
+                              description='Image Height'),
     ]
 
     # Node that spins your MoveIt! example
@@ -39,11 +43,24 @@ def generate_launch_description():
         ],
     )
 
-    return LaunchDescription(args + [hello_moveit_node])
+    camera_detector_node = Node(
+        package='camera_detector',
+        executable='detector_node',
+        name='cube_detector',
+        output='screen'
+    )
 
+    camera_node = Node(
+        package='usb_cam',
+        executable='usb_cam_node_exe',
+        name='usb_camera',
+        parameters=[{
+            'video_device': '/dev/video2',
+            'frame_id': 'camera_frame',
+            'image_width': 640,
+            'image_height': 480,
+        }],
+        output='screen'
+    )
 
-#ros2 launch your_pkg hello_moveit.launch.py \
-#  tx:=-0.4 ty:=0.03 tz:=0.06 \
-#  rx:=-0.93 ry:=0.36 rz:=-0.008 rw:=0.0356
-
-
+    return LaunchDescription(args + [hello_moveit_node, camera_detector_node, camera_node])
