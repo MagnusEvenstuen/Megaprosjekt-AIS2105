@@ -15,7 +15,7 @@ def find_colored_qubes(image, find_color, threshold):
     b, g, r = cv2.split(image)
 
     # Sum the channels that should not be found and calculate the difference
-    if findColor == 3:  # YELLOW (use HSV)
+    if find_color == 3:  # YELLOW (use HSV)
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         lower_yellow = np.array([20, 100, 100])
         upper_yellow = np.array([30, 255, 255])

@@ -45,7 +45,7 @@ def generate_launch_description():
 
     camera_detector_node = Node(
         package='camera_detector',
-        executable='detector_node',
+        executable='camera_detector',
         name='cube_detector',
         output='screen'
     )
