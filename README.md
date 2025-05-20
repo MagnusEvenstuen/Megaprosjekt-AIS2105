@@ -117,7 +117,7 @@ v4l2-ctl --list-devices
 # Om pakkene
 
 ### camera_detector
-camera_detector pakken bruker openCV til å detektere firkanter av forskjellige farger. Den ser på om mengden av den valgte fargen (fungerer bare med rød, blå og grønn) er større enn summen av de to andre fargene + en threshold verdi. Etter at forskjellige objekter er detektert sjekkes det hvor mange kanter det er på hver av de formene. Den står da bare igjen med former med 4 kanter og ingen kurver på de kantene. Så sees det på hvor kvadratisk de forskjellige firkantene er. 
+camera_detector pakken bruker openCV til å detektere firkanter av forskjellige farger. Den ser på om mengden av den valgte fargen (fungerer bare med rød, blå og grønn) er større enn summen av de to andre fargene + en threshold verdi. Pakken funker også for å detektere gul, men da gjør den om RGB verdier til HSV verdier og ser om det er innenfor rekevidden som er definert som gul. Etter at forskjellige objekter er detektert sjekkes det hvor mange kanter det er på hver av de formene. Den står da bare igjen med former med 4 kanter og ingen kurver på de kantene. Så sees det på hvor kvadratisk de forskjellige firkantene er. 
 
 Denne måten å løse detektering av kuber på har både fordeler og ulemper. En fordel er at den er veldig god til å detektere firkanter som er røde, blå og grønne. Den er også ganske robust på kvadrat i forskjellige høyder og størrelser så lenge de er større enn den minste tillatte størrelsen i koden. Ulempa er at den ikke er så robust når det kommer til forskjellig orientasjon på kubene. Hvis kubene står diagonalt på bildet (balanserer på en kant) vil ikke pakken klare å detektere at det er en kube der.
 
