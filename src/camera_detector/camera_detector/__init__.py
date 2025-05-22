@@ -6,13 +6,13 @@ import cv2
 from cv_bridge import CvBridge
 import numpy as np
 
-def find_colored_qubes(image, find_color, threshold):
+def find_colored_qubes(image, find_color):
     # Gets the dimensions of the image
     height, width, _ = image.shape
     image_center = [width / 2, height / 2]
 
     # Sum the channels that should not be found and calculate the difference
-    if find_color == 3:  #Yellow
+    if find_color == 1:  #Yellow
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         lower_limit = np.array([20, 60, 20])
         upper_limit = np.array([35, 255, 255])
@@ -22,7 +22,7 @@ def find_colored_qubes(image, find_color, threshold):
         mask = cv2.erode(mask, kernel, iterations=1)
         mask = cv2.dilate(mask, kernel, iterations=2)
         new_image = mask
-    elif find_color == 2:      #Red
+    elif find_color == 0:      #Red
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         lower_limit = np.array([160, 100, 20])
         upper_limit = np.array([180, 255, 255])
@@ -32,7 +32,7 @@ def find_colored_qubes(image, find_color, threshold):
         mask = cv2.erode(mask, kernel, iterations=1)
         mask = cv2.dilate(mask, kernel, iterations=2)
         new_image = mask
-    elif find_color == 1:    #Green
+    elif find_color == 3:    #Green
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         lower_limit = np.array([35, 60, 20])
         upper_limit = np.array([85, 255, 255])
@@ -101,18 +101,37 @@ class distance_publisher_image_subscriber(Node):
             10
         )
         self.bridge = CvBridge()
+        self.has_published = False
 
     def image_callback(self, msg):
-        # Convert ROS Image to OpenCV format
-        cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
-        # Process image to find squares
-        square_centers = find_colored_qubes(cv_image, find_color=1, threshold=50)
+        if self.has_published:
+            return
         
-        if square_centers:
-            publish_msg = Float64MultiArray()
-            publish_msg.data = square_centers
-            self.publisher.publish(publish_msg)
-            self.get_logger().info(f'Published coordinates: {square_centers}')
+        cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+
+        square_centers = [-1000, -1000, -1000, -1000, -1000, -1000, -1000, -1000]
+
+        red_centers = find_colored_qubes(cv_image, find_color=0)
+        if red_centers:
+            square_centers[0:2] = red_centers
+
+        yellow_centers = find_colored_qubes(cv_image, find_color=1)
+        if yellow_centers:
+            square_centers[2:4] = yellow_centers
+            
+        blue_centers = find_colored_qubes(cv_image, find_color=2)
+        if blue_centers:
+            square_centers[4:6] = blue_centers
+
+        green_centers = find_colored_qubes(cv_image, find_color=3)
+        if green_centers:
+            square_centers[6:8] = green_centers
+        
+        publish_msg = Float64MultiArray()
+        publish_msg.data = square_centers
+        self.publisher.publish(publish_msg)
+        self.has_published = True
+        self.get_logger().info(f'Published coordinates: {square_centers}')
 
 
 def main(args=None):
