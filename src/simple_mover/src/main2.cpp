@@ -72,12 +72,12 @@ int main(int argc, char *argv[])
     {
         // Second position (lower z)
         geometry_msgs::msg::Pose second_pose = first_pose;
-        second_pose.position.z = 0.2;  // Second height
+        second_pose.position.z = 0.6;  // Second height
 
         RCLCPP_INFO(
             logger,
             "Moving to second position: pos(%.3f, %.3f, %.3f)",
-            tx, ty, 0.2
+            tx, ty, 0.6
         );
 
         moveToPosition(move_group, second_pose, logger);
