@@ -11,29 +11,48 @@ def find_colored_qubes(image, find_color, threshold):
     height, width, _ = image.shape
     image_center = [width / 2, height / 2]
 
-    # Split into blue, green, red channels
-    b, g, r = cv2.split(image)
-
     # Sum the channels that should not be found and calculate the difference
-    if find_color == 3:  # YELLOW (use HSV)
+    if find_color == 3:  #Yellow
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        lower_yellow = np.array([20, 100, 100])
-        upper_yellow = np.array([30, 255, 255])
-        mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+        lower_limit = np.array([20, 60, 20])
+        upper_limit = np.array([35, 255, 255])
+        mask = cv2.inRange(hsv, lower_limit, upper_limit)
 
         kernel = np.ones((5, 5), np.uint8)
         mask = cv2.erode(mask, kernel, iterations=1)
         mask = cv2.dilate(mask, kernel, iterations=2)
-        newImage = mask
-    elif find_color == 2:      # Red
-        sum_unused = cv2.add(b, g)
-        difference = cv2.subtract(r, sum_unused)
-    elif find_color == 1:    # Green
-        sum_unused = cv2.add(b, r)
-        difference = cv2.subtract(g, sum_unused)
-    else:                    # Blue
-        sum_unused = cv2.add(g, r)
-        difference = cv2.subtract(b, sum_unused)
+        new_image = mask
+    elif find_color == 2:      #Red
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        lower_limit = np.array([160, 100, 20])
+        upper_limit = np.array([180, 255, 255])
+        mask = cv2.inRange(hsv, lower_limit, upper_limit)
+
+        kernel = np.ones((5, 5), np.uint8)
+        mask = cv2.erode(mask, kernel, iterations=1)
+        mask = cv2.dilate(mask, kernel, iterations=2)
+        new_image = mask
+    elif find_color == 1:    #Green
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        lower_limit = np.array([35, 60, 20])
+        upper_limit = np.array([85, 255, 255])
+        mask = cv2.inRange(hsv, lower_limit, upper_limit)
+
+        kernel = np.ones((5, 5), np.uint8)
+        mask = cv2.erode(mask, kernel, iterations=1)
+        mask = cv2.dilate(mask, kernel, iterations=2)
+        new_image = mask
+    else:                   #Blue
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        lower_limit = np.array([90, 100, 20])
+        upper_limit = np.array([130, 255, 255])
+        mask = cv2.inRange(hsv, lower_limit, upper_limit)
+
+        kernel = np.ones((5, 5), np.uint8)
+        mask = cv2.erode(mask, kernel, iterations=1)
+        mask = cv2.dilate(mask, kernel, iterations=2)
+        new_image = mask
+
 
     # Apply threshold to get binary image
     _, new_image = cv2.threshold(difference, threshold, 255, cv2.THRESH_BINARY)
@@ -45,18 +64,16 @@ def find_colored_qubes(image, find_color, threshold):
         contour_length = cv2.arcLength(contour, True)
         approximation = cv2.approxPolyDP(contour, 0.04 * contour_length, True)
         if len(approximation) == 4 and cv2.isContourConvex(approximation):
-            x, y, w, h = cv2.boundingRect(approximation)
+            x, y, w,  h = cv2.boundingRect(approximation)
             aspect_ratio = float(w) / h
             if 0.5 <= aspect_ratio <= 1.5 and cv2.contourArea(approximation) > 50:
                 square_contours.append(approximation)
 
-    result_image = np.zeros_like(new_image)
     square_center_image = []
 
     if square_contours:
         pixels_to_keep = np.zeros_like(new_image)
         cv2.drawContours(pixels_to_keep, square_contours, -1, 255, -1)
-        result_image = cv2.bitwise_and(image, image, mask=pixels_to_keep)
 
         for square in square_contours:
             # Compute average corner coordinates
@@ -93,7 +110,7 @@ class distance_publisher_image_subscriber(Node):
         # Convert ROS Image to OpenCV format
         cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
         # Process image to find squares
-        square_centers = find_colored_qubes(cv_image, find_color=2, threshold=10)
+        square_centers = find_colored_qubes(cv_image, find_color=1, threshold=50)
         
         if square_centers:
             publish_msg = Float64MultiArray()
