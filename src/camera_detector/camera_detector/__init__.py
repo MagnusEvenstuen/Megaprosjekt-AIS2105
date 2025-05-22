@@ -53,10 +53,6 @@ def find_colored_qubes(image, find_color, threshold):
         mask = cv2.dilate(mask, kernel, iterations=2)
         new_image = mask
 
-
-    # Apply threshold to get binary image
-    _, new_image = cv2.threshold(difference, threshold, 255, cv2.THRESH_BINARY)
-
     # Detect the shapes
     contours, _ = cv2.findContours(new_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     square_contours = []
