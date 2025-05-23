@@ -106,6 +106,13 @@ Default gateway 143.25.151.0
 
 Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
 
+![sjekk nettverk](https://github.com/user-attachments/assets/60be46bd-ec5c-4143-a47d-b866828f2ce5)
+
+Sjekk her for å få bekreftet at roboten er koblet til netverket. En grønn hake betyr at den er tilkoblet netverket.
+
+![lokal remote](https://github.com/user-attachments/assets/63d2118e-f250-4130-b8ab-54633cfa4819)
+Etterpå må du skifte roboten fra Lokal til Remote her
+
 ## Surface oppsett
 Etter å ha booten surfacen opp i ubuntu og sjekket at netverk oppsettet er riktig, kan du åpne to teminaler( hurtigtasten CTRL+ALt+T).
 
