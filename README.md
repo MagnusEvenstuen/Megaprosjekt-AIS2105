@@ -2,15 +2,18 @@
 # AIS2105 - Mekatronikk og robotikk
 
 ## Innhold
-## Innhold
 - [Gruppe](#gruppe)
 - [Om prosjektet](#om-prosjektet)
 - [Hva kan roboten gjøre](#hva-kan-roboten-gjøre)
 - [Viktige komandoer](#viktige-komandoer)
 - [Oppsett](#veiledning-til-oppsett-av-prosjektet)
+  - [ROS 2](#ros-2)
   - [Nedlastinger](#nedlastinger)
+  - [Bugging](#bygging)
+  - [Klargjøring av robot](#klargjøring-av-robot)
   - [IP-oppsett](#ip-oppsett)
-  - [Oppsett i terminal](#oppsett-i-terminal)
+  - [Surface oppsett](#surface-oppsett)
+  - [Oppsett på egen maskin](#Oppsett-på-egen-maskin)
 - [Styring fra ekstern laptop](#styring-fra-extern-laptop)
 - [Build uten crash!](#build-uten-crash)
 - [Kamera](#kamera)
@@ -30,46 +33,99 @@ I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker 
 Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
 
 # Veiledning til oppsett av prosjektet
-Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem. VI bruker Ubuntu Ubuntu 20.04.
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem og vi bruker en UR5e-robot. Som opreativsystem har vi valgt å gjøre denne veiledningen for linux der vi bruker Ubuntu 20.04. Merk også at for å kunne følge følge denne veiledningen trenger du tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface nettbrett som er satt opp for dette prosjektet. Link til github prosjektet finner du her (sett inn link).
 
-## Ros 2
-Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+# Veiledning til oppsett av prosjektet
+
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som tar deg gjennom alle nødvendige steg. Veiledningen er laget for brukere av Linux (Ubuntu 20.04) og omhandler en UR5e-robot. Merk også at du må ha tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface-nettbrett, som er forhåndskonfigurert for dette prosjektet. Link til GitHub-prosjektet finner du her (sett inn link).
+
+## ROS 2
+
+Dette prosjektet krever at du har ROS 2 installert. Du kan følge denne veiledningen:  
+https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 ## Nedlasting
-Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
+
+Etter at du har installert ROS 2, må du laste ned prosjektet. Gå til mappen der du vil ha prosjektet, høyreklikk og velg **Åpne i terminal**. Lim inn kommandoen:
+
+```bash
+git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
-git clone 
+
+Dette vil laste ned prosjektet til mappen du åpnet terminalen i. Denne mappen blir ditt workspace for prosjektet.
+
+## Bygging
+
+Gå til workspace-mappen, høyreklikk og velg **Åpne i terminal**. Lim inn følgende kommando for å bygge:
+
+```bash
+colcon build
 ```
-##IP-oppsett
-  
-Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
 
-Trykk på de tre linjene i det øvre høyre hjørne til roboten.
+Når du kjører kommandoen, starter byggeprosessen. Colcon identifiserer først alle avhengigheter og ROS 2-pakker, kompilerer kildekoden og genererer deretter de nødvendige konfigurasjons- og oppsettfiler.
 
-![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
+Etter at byggingen er fullført, lim inn denne kommandoen i samme terminal:
 
-SÅ velger du Settings i menyen som dukker opp.
+```bash
+source install/setup.bash
+```
 
+Dette oppdaterer miljøvariablene slik at systemet finner de nylig kompilert pakkene.
 
-I høyre hjeørne på roboten trykker du på de tre strekene.
+## Klargjøring av robot
 
-![bilde av meny for settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
+Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal”, som gjør det enkelt å montere både kamera og griper. Braketten festes til roboten med fire M5-skruer.
 
-Velg så Network fra menyen i som dukker opp på venstre side av skjermen.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="Robot uten feste" width="300" />
+  <img src="https://github.com/user-attachments/assets/d0a31847-35da-477d-a555-6f6326f17163" alt="Kamera feste" width="300" />
+</p>
 
+## IP-oppsett
 
-![bilde av netverk skjerm](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
+Etter oppstart av roboten er det viktig at roboten, Surface-nettbrettet og PC-en din har riktige nettverksinnstillinger og ligger i samme nettverk.
 
-Her er innstillingene vi har brukt under prosjeketet.
+1. Trykk på de tre linjene øverst til høyre på robotens skjerm.  
+   ![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
 
-IP address: 143.25.150.7
+2. Velg **Settings** i menyen som dukker opp.  
+   ![Meny for Settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
 
-Subnet mask: 255.255.252.0
+3. Velg **Network** fra menyen til venstre.  
+   ![Nettverksinnstillinger](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
 
-Default gateway 143.25.151.0
+Under prosjektet har vi brukt disse innstillingene:
 
-Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
+- **IP address:** 143.25.150.7  
+- **Subnet mask:** 255.255.252.0  
+- **Default gateway:** 143.25.151.0  
 
+Det er ikke nødvendig å bruke akkurat disse, men viktig at default gateway er identisk for PC, Surface og robot, og at hver enhet har en unik IP-adresse.
+
+4. Sjekk at roboten er koblet til nettverket – en grønn hake vises når den er tilkoblet.  
+   ![Sjekk nettverk](https://github.com/user-attachments/assets/60be46bd-ec5c-4143-a47d-b866828f2ce5)
+
+5. Bytt modus fra **Lokal** til **Remote** på roboten.  
+   ![Lokal/Remote](https://github.com/user-attachments/assets/63d2118e-f250-4130-b8ab-54633cfa4819)
+
+## Surface-oppsett
+
+Etter at Surface-maskinen har startet opp i Ubuntu og nettverksinnstillingene er verifisert, åpner du to terminaler (Ctrl+Alt+T).
+
+- I den ene terminalen kjører du:
+  ```bash
+  <lim inn kommando>
+  ```
+- I den andre terminalen kjører du:
+  ```bash
+  <lim inn kommando>
+  ```
+
+Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjektet. Nå vil RViz starte, og du kan styre roboten via GUI.
+
+## Oppsett på egen maskin
+
+<!-- Fortsett her med egen maskin-oppsettet -->
 
 # Viktige komandoer
 ```
