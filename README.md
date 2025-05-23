@@ -2,11 +2,20 @@
 # AIS2105 - Mekatronikk og robotikk
 
 ## Innhold
-- [Gruppe](#Gruppe)
-- [Om prosjektet](#Om-prosjektet)
-- [Hva kan roboten gjøre](#Hva-kan-roboten-gjøre)
-- [Viktige komandoer](#Viktige-komandoer)
-- [IP Oppsett](#Oppsett)
+## Innhold
+- [Gruppe](#gruppe)
+- [Om prosjektet](#om-prosjektet)
+- [Hva kan roboten gjøre](#hva-kan-roboten-gjøre)
+- [Viktige komandoer](#viktige-komandoer)
+- [Oppsett](#veiledning-til-oppsett-av-prosjektet)
+  - [Nedlastinger](#nedlastinger)
+  - [IP-oppsett](#ip-oppsett)
+  - [Oppsett i terminal](#oppsett-i-terminal)
+- [Styring fra ekstern laptop](#styring-fra-extern-laptop)
+- [Build uten crash!](#build-uten-crash)
+- [Kamera](#kamera)
+- [Om pakkene](#om-pakkene)
+
 # Gruppe
 Prosjektgruppe 163
 
@@ -20,7 +29,19 @@ I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker 
 # Hva kan roboten gjøre
 Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
 
-# Oppsett
+# Veiledning til oppsett av prosjektet
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem. VI bruker Ubuntu Ubuntu 20.04.
+
+## Ros 2
+Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+
+## Nedlasting
+Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
+```
+git clone 
+```
+##IP-oppsett
+  
 Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
 
 Trykk på de tre linjene i det øvre høyre hjørne til roboten.
