@@ -2,11 +2,20 @@
 # AIS2105 - Mekatronikk og robotikk
 
 ## Innhold
-- [Gruppe](#Gruppe)
-- [Om prosjektet](#Om-prosjektet)
-- [Hva kan roboten gjøre](#Hva-kan-roboten-gjøre)
-- [Viktige komandoer](#Viktige-komandoer)
-- [IP Oppsett](#IP-Oppsett)
+## Innhold
+- [Gruppe](#gruppe)
+- [Om prosjektet](#om-prosjektet)
+- [Hva kan roboten gjøre](#hva-kan-roboten-gjøre)
+- [Viktige komandoer](#viktige-komandoer)
+- [Oppsett](#veiledning-til-oppsett-av-prosjektet)
+  - [Nedlastinger](#nedlastinger)
+  - [IP-oppsett](#ip-oppsett)
+  - [Oppsett i terminal](#oppsett-i-terminal)
+- [Styring fra ekstern laptop](#styring-fra-extern-laptop)
+- [Build uten crash!](#build-uten-crash)
+- [Kamera](#kamera)
+- [Om pakkene](#om-pakkene)
+
 # Gruppe
 Prosjektgruppe 163
 
@@ -19,6 +28,48 @@ I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker 
 
 # Hva kan roboten gjøre
 Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
+
+# Veiledning til oppsett av prosjektet
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem. VI bruker Ubuntu Ubuntu 20.04.
+
+## Ros 2
+Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+
+## Nedlasting
+Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
+```
+git clone 
+```
+##IP-oppsett
+  
+Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
+
+Trykk på de tre linjene i det øvre høyre hjørne til roboten.
+
+![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
+
+SÅ velger du Settings i menyen som dukker opp.
+
+
+I høyre hjeørne på roboten trykker du på de tre strekene.
+
+![bilde av meny for settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
+
+Velg så Network fra menyen i som dukker opp på venstre side av skjermen.
+
+
+![bilde av netverk skjerm](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
+
+Her er innstillingene vi har brukt under prosjeketet.
+
+IP address: 143.25.150.7
+
+Subnet mask: 255.255.252.0
+
+Default gateway 143.25.151.0
+
+Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
+
 
 # Viktige komandoer
 ```
@@ -46,12 +97,6 @@ initial_joint_controller:=joint_trajectory_controller
 ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 ```
 
-# IP Oppsett
-IP address: 143.25.150.7
-
-Subnet mask: 255.255.252.0
-
-Default gateway 143.25.151.0
 
 
 # Styring fra extern laptop
