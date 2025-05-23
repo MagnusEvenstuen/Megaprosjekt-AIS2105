@@ -39,7 +39,7 @@ Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil
 Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 ## Nedlasting
-Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
+Etter at du har installert ROS 2, må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
 ```
 git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
