@@ -30,7 +30,7 @@ I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker 
 Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
 
 # Veiledning til oppsett av prosjektet
-Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem. VI bruker Ubuntu Ubuntu 20.04.
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem og vi bruker en UR5e-robot. Som opreativsystem har vi valgt å gjøre denne veiledningen for linux der vi bruker Ubuntu 20.04
 
 ## Ros 2
 Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
@@ -40,6 +40,11 @@ Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du øns
 ```
 git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
+Dette vil laste ned prosjeket (fra dette repositoriet) til mappen du åpnet teminalen i og dette blir nå ditt workspace for dette prosjeketet.
+
+## Klargjøring av robot.
+Vi bruker UR5e-robot og et sandberg USB kamera, men forskjellige typer kaemra USB kamera vil fungere. For å feste kamera til roboten har vi fått hjelp av (Adam Leon Kleppe foreleser i AIS2105) som har designet og 3d printet en brankett til dette formålet. Denne har en gjennomtenkt design, med innebygd "custom quick removel" supert og ivaretar muligheten til å både feste et kamera samtidig som en griper er montert. FAntastisk.
+
 ##IP-oppsett
   
 Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
