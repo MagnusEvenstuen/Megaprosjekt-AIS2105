@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 # -------------------------
 # Build the original example
@@ -31,6 +32,7 @@ ament_target_dependencies(
   rclcpp
   moveit_ros_planning_interface
   geometry_msgs
+  std_msgs
 )
 
 # Install executables
