@@ -6,7 +6,7 @@
 - [Om prosjektet](#Om-prosjektet)
 - [Hva kan roboten gjøre](#Hva-kan-roboten-gjøre)
 - [Viktige komandoer](#Viktige-komandoer)
-- [IP Oppsett](#IP-Oppsett)
+- [IP Oppsett](#Oppsett)
 # Gruppe
 Prosjektgruppe 163
 
@@ -20,33 +20,7 @@ I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker 
 # Hva kan roboten gjøre
 Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
 
-# Viktige komandoer
-```
-colcon build # Bygger alle pakkene i workspace
-```
-```
-colcon build --packages-select qube_bringup  # Bygger kun den spesifiserte pakken
-```
-```
-source install/setup.bash  # Kilde oppsett etter bygging
-```
-```
-ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller headless_mode:=true
-```
-```
-ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller
-```
-```
-ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller
-```
-```
-ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
-```
-
-# IP Oppsett
+# Oppsett
 Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
 
 Trykk på de tre linjene i det øvre høyre hjørne til roboten.
@@ -74,6 +48,34 @@ Subnet mask: 255.255.252.0
 Default gateway 143.25.151.0
 
 Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
+
+
+# Viktige komandoer
+```
+colcon build # Bygger alle pakkene i workspace
+```
+```
+colcon build --packages-select qube_bringup  # Bygger kun den spesifiserte pakken
+```
+```
+source install/setup.bash  # Kilde oppsett etter bygging
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller headless_mode:=true
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller
+```
+```
+ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
+initial_joint_controller:=joint_trajectory_controller
+```
+```
+ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
+```
+
 
 
 # Styring fra extern laptop
