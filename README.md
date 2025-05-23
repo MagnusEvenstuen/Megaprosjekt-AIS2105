@@ -43,9 +43,16 @@ git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 Dette vil laste ned prosjeket (fra dette repositoriet) til mappen du åpnet teminalen i og dette blir nå ditt workspace for dette prosjeketet.
 
 ## Klargjøring av robot.
-Vi bruker UR5e-robot og et sandberg USB kamera, men forskjellige typer kaemra USB kamera vil fungere. For å feste kamera til roboten har vi fått hjelp av (Adam Leon Kleppe foreleser i AIS2105) som har designet og 3d printet en brankett til dette formålet. Denne har en gjennomtenkt design, med innebygd "custom quick removel" supert og ivaretar muligheten til å både feste et kamera samtidig som en griper er montert. FAntastisk.
+Vi bruker UR5e-robot og et sandberg USB kamera, men forskjellige typer kaemra USB kamera vil fungere. For å feste kamera til roboten har vi fått hjelp av (Adam Leon Kleppe foreleser i AIS2105) som har designet og 3d printet en brankett til dette formålet. Denne har en gjennomtenkt design, med innebygd "custom quick removal" supert og som ivaretar muligheten til å både feste et kamera samtidig som en griper er montert. Fantastisk! Branketten kan festes til roboten med 4 stk M5 skruer.
 
-##IP-oppsett
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="robot uten feste" width="300" />
+  <img src="https://github.com/user-attachments/assets/d0a31847-35da-477d-a555-6f6326f17163" alt="Kamera feste" width="300" />
+</p>
+
+
+## IP-oppsett
   
 Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
 
