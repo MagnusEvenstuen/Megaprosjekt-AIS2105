@@ -47,11 +47,33 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 ```
 
 # IP Oppsett
+Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
+
+Trykk på de tre linjene i det øvre høyre hjørne til roboten.
+
+![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
+
+SÅ velger du Settings i menyen som dukker opp.
+
+
+I høyre hjeørne på roboten trykker du på de tre strekene.
+
+![bilde av meny for settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
+
+Velg så Network fra menyen i som dukker opp på venstre side av skjermen.
+
+
+![bilde av netverk skjerm](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
+
+Her er innstillingene vi har brukt under prosjeketet.
+
 IP address: 143.25.150.7
 
 Subnet mask: 255.255.252.0
 
 Default gateway 143.25.151.0
+
+Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
 
 
 # Styring fra extern laptop
