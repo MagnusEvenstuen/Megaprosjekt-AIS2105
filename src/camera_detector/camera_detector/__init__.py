@@ -107,8 +107,24 @@ class distance_publisher_image_subscriber(Node):
             self.command_callback,
             10
         )
+
+        self.target_sub = self.create_subscription(
+            geometry_msgs.msg.Point,
+            'target_position',
+            self.target_callback,
+            10
+        )
+
+        self.target_x = 0.0
+        self.target_y = 0.0
+
         self.bridge = CvBridge()
         self.publish_ready = True
+
+    def target_callback(self, msg):
+        self.target_x = msg.x
+        self.target_y = msg.y
+        self.get_logger().info(f'Received target position: x={self.target_x}, y={self.target_y}')
 
     def command_callback(self, msg):
         if msg.data == 'photo':
@@ -125,26 +141,26 @@ class distance_publisher_image_subscriber(Node):
 
         red_centers = find_colored_qubes(cv_image, find_color=0)
         if red_centers:
-            red_centers[0] = red_centers[0]*0.00061712+0.00064686*red_centers[1]-0.38990056
-            red_centers[1] = -red_centers[0]*0.00060769+0.00064989*red_centers[1]+0.2923212
+            red_centers[0] = red_centers[0]*0.00061712+0.00064686*red_centers[1]-0.38990056 - (self.target_x-0.36747354041927566)
+            red_centers[1] = -red_centers[0]*0.00060769+0.00064989*red_centers[1]+0.2923212 - (self.target_y-0.3294852403337859)
             square_centers[0:2] = red_centers
 
         yellow_centers = find_colored_qubes(cv_image, find_color=1)
         if yellow_centers:
-            yellow_centers[0] = yellow_centers[0]*0.00061712+0.00064686*yellow_centers[1]-0.38990056
-            yellow_centers[1] = -yellow_centers[0]*0.00060769+0.00064989*yellow_centers[1]+0.2923212
+            yellow_centers[0] = yellow_centers[0]*0.00061712+0.00064686*yellow_centers[1]-0.38990056 - (self.target_x-0.36747354041927566)
+            yellow_centers[1] = -yellow_centers[0]*0.00060769+0.00064989*yellow_centers[1]+0.2923212 - (self.target_y-0.3294852403337859)
             square_centers[2:4] = yellow_centers
             
         blue_centers = find_colored_qubes(cv_image, find_color=2)
         if blue_centers:
-            blue_centers[0] = blue_centers[0]*0.00061712+0.00064686*blue_centers[1]-0.38990056
-            blue_centers[1] = -blue_centers[0]*0.00060769+0.00064989*blue_centers[1]+0.2923212
+            blue_centers[0] = blue_centers[0]*0.00061712+0.00064686*blue_centers[1]-0.38990056 - (self.target_x-0.36747354041927566)
+            blue_centers[1] = -blue_centers[0]*0.00060769+0.00064989*blue_centers[1]+0.2923212 - (self.target_y-0.3294852403337859)
             square_centers[4:6] = blue_centers
 
         green_centers = find_colored_qubes(cv_image, find_color=3)
         if green_centers:
-            green_centers[0] = green_centers[0]*0.00061712+0.00064686*green_centers[1]-0.38990056
-            green_centers[1] = -green_centers[0]*0.00060769+00.00064989*green_centers[1]+0.2923212
+            green_centers[0] = green_centers[0]*0.00061712+0.00064686*green_centers[1]-0.38990056 - (self.target_x-0.36747354041927566)
+            green_centers[1] = -green_centers[0]*0.00060769+00.00064989*green_centers[1]+0.2923212 - (self.target_y-0.3294852403337859)
             square_centers[6:8] = green_centers
         
         publish_msg = Float64MultiArray()

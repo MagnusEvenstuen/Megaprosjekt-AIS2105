@@ -31,9 +31,15 @@ void coordinateCallback(const std_msgs::msg::Float64MultiArray::SharedPtr msg) {
 bool moveToPosition(
     moveit::planning_interface::MoveGroupInterface& move_group,
     const geometry_msgs::msg::Pose& target_pose,
-    rclcpp::Logger& logger)
+    rclcpp::Logger& logger,
+    rclcpp::Publisher<geometry_msgs::msg::Point>::SharedPtr position_publisher)
 {
     move_group.setPoseTarget(target_pose);
+
+    geometry_msgs::msg::Point position;
+    position.x = target_pose.position.x;
+    position.y = target_pose.position.y;
+    position_publisher->publish(position);
 
     moveit::planning_interface::MoveGroupInterface::Plan plan;
     bool success = static_cast<bool>(move_group.plan(plan));
@@ -62,6 +68,9 @@ int main(int argc, char *argv[])
         "hello_moveit2",
         rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
     );
+
+    auto position_publisher = node->create_publisher<geometry_msgs::msg::Point>(
+    "target_position", 10);
 
     // Create subscription to camera coordinates
     auto subscription = node->create_subscription<std_msgs::msg::Float64MultiArray>(
@@ -94,7 +103,7 @@ int main(int argc, char *argv[])
         target_pose.position.x = sleep_x;
         target_pose.position.y = sleep_y;
         target_pose.position.z = sleep_z;
-        moveToPosition(move_group, target_pose, logger);
+        moveToPosition(move_group, target_pose, logger, position_publisher);
         rclcpp::shutdown();
         return 0;
     }
@@ -104,7 +113,7 @@ int main(int argc, char *argv[])
     target_pose.position.x = camera_x;
     target_pose.position.y = camera_y;
     target_pose.position.z = 0.6;
-    moveToPosition(move_group, target_pose, logger);
+    moveToPosition(move_group, target_pose, logger, position_publisher);
 
     // Create publisher for triggering photo
     auto photo_trigger = node->create_publisher<std_msgs::msg::String>("take_photo", 10);
@@ -125,33 +134,65 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-    // Visit each valid block position
-    for (const auto& block : block_positions) {
-        if (!block.valid) continue;
-
-        // Move to block position at safe height
-        target_pose.position.x = block.x;
-        target_pose.position.y = block.y;
-        target_pose.position.z = 0.6;
-
-        RCLCPP_INFO(logger, "Moving to position: (%.3f, %.3f, %.3f)", 
-                   block.x, block.y, 0.6);
-        sleep(3);
-
-        if (moveToPosition(move_group, target_pose, logger)) {
-            // Move down
-            target_pose.position.z = 0.2;
-            RCLCPP_INFO(logger, "Moving down to: (%.3f, %.3f, %.3f)", 
-                       block.x, block.y, 0.2);
-            sleep(3);
+    int conter = 0;
+    bool notFound = false;
+    for (const auto& block : block_positions){
+        if (!block.valid){
+            notFound = true;
             
-            if (moveToPosition(move_group, target_pose, logger)) {
-                // Move back up
-                target_pose.position.z = 0.6;
-                RCLCPP_INFO(logger, "Moving up to: (%.3f, %.3f, %.3f)", 
-                           block.x, block.y, 0.6);
+            if (conter % 3 == 0){
+                target_pose.position.x = camera_x + 0.2;
+                target_pose.position.y = camera_y + 0.2;
+            } else if (conter % 3 == 1){
+                target_pose.position.x = camera_x - 0.2;
+                target_pose.position.y = camera_y - 0.2;
+            } else{
+                target_pose.position.x = camera_x + 0.2;
+                target_pose.position.y = camera_y - 0.2;
+            }
+
+            moveToPosition(move_group, target_pose, logger, position_publisher);
+            
+            sleep(2);
+            auto msg = std_msgs::msg::String();
+            msg.data = "photo";
+            photo_trigger->publish(msg);
+            RCLCPP_INFO(logger, "Triggered photo capture");
+            
+            conter++;
+            break;
+        }
+    }
+
+    if (notFound){
+    // Visit each valid block position
+        for (const auto& block : block_positions) {
+            if (!block.valid) continue;
+
+            // Move to block position at safe height
+            target_pose.position.x = block.x;
+            target_pose.position.y = block.y;
+            target_pose.position.z = 0.6;
+
+            RCLCPP_INFO(logger, "Moving to position: (%.3f, %.3f, %.3f)", 
+                    block.x, block.y, 0.6);
+            sleep(3);
+
+            if (moveToPosition(move_group, target_pose, logger, position_publisher)) {
+                // Move down
+                target_pose.position.z = 0.2;
+                RCLCPP_INFO(logger, "Moving down to: (%.3f, %.3f, %.3f)", 
+                        block.x, block.y, 0.2);
                 sleep(3);
-                moveToPosition(move_group, target_pose, logger);
+                
+                if (moveToPosition(move_group, target_pose, logger, position_publisher)) {
+                    // Move back up
+                    target_pose.position.z = 0.6;
+                    RCLCPP_INFO(logger, "Moving up to: (%.3f, %.3f, %.3f)", 
+                            block.x, block.y, 0.6);
+                    sleep(3);
+                    moveToPosition(move_group, target_pose, logger, position_publisher);
+                }
             }
         }
     }
@@ -162,7 +203,7 @@ int main(int argc, char *argv[])
     target_pose.position.z = 0.6;
     RCLCPP_INFO(logger, "Returning to camera home position");
     sleep(3);
-    moveToPosition(move_group, target_pose, logger);
+    moveToPosition(move_group, target_pose, logger, position_publisher);
 
     rclcpp::shutdown();
     return 0;
