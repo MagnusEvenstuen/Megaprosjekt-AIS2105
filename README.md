@@ -35,101 +35,97 @@ Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, pl
 # Veiledning til oppsett av prosjektet
 Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem og vi bruker en UR5e-robot. Som opreativsystem har vi valgt å gjøre denne veiledningen for linux der vi bruker Ubuntu 20.04. Merk også at for å kunne følge følge denne veiledningen trenger du tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface nettbrett som er satt opp for dette prosjektet. Link til github prosjektet finner du her (sett inn link).
 
-## Ros 2
-Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledningen: https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
+# Veiledning til oppsett av prosjektet
+
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som tar deg gjennom alle nødvendige steg. Veiledningen er laget for brukere av Linux (Ubuntu 20.04) og omhandler en UR5e-robot. Merk også at du må ha tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface-nettbrett, som er forhåndskonfigurert for dette prosjektet. Link til GitHub-prosjektet finner du her (sett inn link).
+
+## ROS 2
+
+Dette prosjektet krever at du har ROS 2 installert. Du kan følge denne veiledningen:  
+https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
 ## Nedlasting
-Etter at du har installert ROS 2, må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
-```
+
+Etter at du har installert ROS 2, må du laste ned prosjektet. Gå til mappen der du vil ha prosjektet, høyreklikk og velg **Åpne i terminal**. Lim inn kommandoen:
+
+```bash
 git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
-Dette vil laste ned prosjeket (fra dette repositoriet) til mappen du åpnet teminalen i og dette blir nå ditt workspace for dette prosjeketet.
 
+Dette vil laste ned prosjektet til mappen du åpnet terminalen i. Denne mappen blir ditt workspace for prosjektet.
 
 ## Bygging
-Gå til ditt workspace, høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Her skal du lime inn følgende kommandoer.
 
-```
-colcon build 
-```
-Når du kjører kommandoen starter du byggeprosessen for prosjektet. Colcon identifiserer først alle avhengigheter og ROS 2-pakker, kompilerer kildekoden og genererer deretter de nødvendige konfigurasjons- og oppsettfila.
+Gå til workspace-mappen, høyreklikk og velg **Åpne i terminal**. Lim inn følgende kommando for å bygge:
 
-Når du er feridg å bygge skal du lime inn følgende komando i samme temrimanl:
-
+```bash
+colcon build
 ```
+
+Når du kjører kommandoen, starter byggeprosessen. Colcon identifiserer først alle avhengigheter og ROS 2-pakker, kompilerer kildekoden og genererer deretter de nødvendige konfigurasjons- og oppsettfiler.
+
+Etter at byggingen er fullført, lim inn denne kommandoen i samme terminal:
+
+```bash
 source install/setup.bash
 ```
-Deretter må du oppdatere miljøvariablene slik at systemet finner de nylig kompilert pakkene. Det gjør du ved å kjøre kommandoen over i terminalen.
 
+Dette oppdaterer miljøvariablene slik at systemet finner de nylig kompilert pakkene.
 
+## Klargjøring av robot
 
-## Klargjøring av robot.
-Vi bruker UR5e-robot og et sandberg USB kamera, men forskjellige typer kaemra USB kamera vil fungere. For å feste kamera til roboten har vi fått hjelp av (Adam Leon Kleppe foreleser i AIS2105) som har designet og 3d printet en brankett til dette formålet. Denne har en gjennomtenkt design, med innebygd "custom quick removal" supert og som ivaretar muligheten til å både feste et kamera samtidig som en griper er montert. Fantastisk! Branketten kan festes til roboten med 4 stk M5 skruer.
-
-
-
-
+Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal”, som gjør det enkelt å montere både kamera og griper. Braketten festes til roboten med fire M5-skruer.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="robot uten feste" width="300" />
+  <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="Robot uten feste" width="300" />
   <img src="https://github.com/user-attachments/assets/d0a31847-35da-477d-a555-6f6326f17163" alt="Kamera feste" width="300" />
 </p>
 
-
 ## IP-oppsett
-  
-Etter oppstart av roboten, er det viktig å sjekke at roboten, surfesen og pcen din er på samme har de riktie Netverksinnstillingne 
 
-Trykk på de tre linjene i det øvre høyre hjørne til roboten.
+Etter oppstart av roboten er det viktig at roboten, Surface-nettbrettet og PC-en din har riktige nettverksinnstillinger og ligger i samme nettverk.
 
-![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
+1. Trykk på de tre linjene øverst til høyre på robotens skjerm.  
+   ![Bilde tre strek robotskjerm](https://github.com/user-attachments/assets/a034907f-a56b-432a-b73b-590183218c36)
 
-SÅ velger du Settings i menyen som dukker opp.
+2. Velg **Settings** i menyen som dukker opp.  
+   ![Meny for Settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
 
+3. Velg **Network** fra menyen til venstre.  
+   ![Nettverksinnstillinger](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
 
-I høyre hjeørne på roboten trykker du på de tre strekene.
+Under prosjektet har vi brukt disse innstillingene:
 
-![bilde av meny for settings](https://github.com/user-attachments/assets/2b8b9a71-5a73-415b-9035-4cc9cd3fa0a9)
+- **IP address:** 143.25.150.7  
+- **Subnet mask:** 255.255.252.0  
+- **Default gateway:** 143.25.151.0  
 
-Velg så Network fra menyen i som dukker opp på venstre side av skjermen.
+Det er ikke nødvendig å bruke akkurat disse, men viktig at default gateway er identisk for PC, Surface og robot, og at hver enhet har en unik IP-adresse.
 
+4. Sjekk at roboten er koblet til nettverket – en grønn hake vises når den er tilkoblet.  
+   ![Sjekk nettverk](https://github.com/user-attachments/assets/60be46bd-ec5c-4143-a47d-b866828f2ce5)
 
-![bilde av netverk skjerm](https://github.com/user-attachments/assets/fff002c2-9549-42c0-8c8a-7c7dfa1bec46)
+5. Bytt modus fra **Lokal** til **Remote** på roboten.  
+   ![Lokal/Remote](https://github.com/user-attachments/assets/63d2118e-f250-4130-b8ab-54633cfa4819)
 
-Her er innstillingene vi har brukt under prosjeketet.
+## Surface-oppsett
 
-IP address: 143.25.150.7
+Etter at Surface-maskinen har startet opp i Ubuntu og nettverksinnstillingene er verifisert, åpner du to terminaler (Ctrl+Alt+T).
 
-Subnet mask: 255.255.252.0
+- I den ene terminalen kjører du:
+  ```bash
+  <lim inn kommando>
+  ```
+- I den andre terminalen kjører du:
+  ```bash
+  <lim inn kommando>
+  ```
 
-Default gateway 143.25.151.0
-
-Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
-
-![sjekk nettverk](https://github.com/user-attachments/assets/60be46bd-ec5c-4143-a47d-b866828f2ce5)
-
-Sjekk her for å få bekreftet at roboten er koblet til netverket. En grønn hake betyr at den er tilkoblet netverket.
-
-![lokal remote](https://github.com/user-attachments/assets/63d2118e-f250-4130-b8ab-54633cfa4819)
-Etterpå må du skifte roboten fra Lokal til Remote her
-
-## Surface oppsett
-Etter å ha booten surfacen opp i ubuntu og sjekket at netverk oppsettet er riktig, kan du åpne to teminaler( hurtigtasten CTRL+ALt+T).
-
-I den ene terminalen kjører du følgende komando:
-
-```
-lim inn komando
-```
-og i den andre teminalen kjører du denne komandoen:
-
-```
-lim inn komando
-```
-
-Dette er to launch filer som starter opp å kjører alle nødvendige XX for at du skal kunen kjøre prosjektet. Nå vil RViz starte opp og du vil kunne bevege roboten i brukergrensesnittet. 
+Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjektet. Nå vil RViz starte, og du kan styre roboten via GUI.
 
 ## Oppsett på egen maskin
+
+<!-- Fortsett her med egen maskin-oppsettet -->
 
 # Viktige komandoer
 ```
