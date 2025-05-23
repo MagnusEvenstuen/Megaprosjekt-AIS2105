@@ -42,8 +42,29 @@ git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
 Dette vil laste ned prosjeket (fra dette repositoriet) til mappen du åpnet teminalen i og dette blir nå ditt workspace for dette prosjeketet.
 
+
+## Bygging
+Gå til ditt workspace, høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Her skal du lime inn følgende kommandoer.
+
+```
+colcon build 
+```
+Når du kjører kommandoen starter du byggeprosessen for prosjektet. Colcon identifiserer først alle avhengigheter og ROS 2-pakker, kompilerer kildekoden og genererer deretter de nødvendige konfigurasjons- og oppsettfila.
+
+Når du er feridg å bygge skal du lime inn følgende komando i samme temrimanl:
+
+```
+source install/setup.bash
+```
+Deretter må du oppdatere miljøvariablene slik at systemet finner de nylig kompilert pakkene. Det gjør du ved å kjøre kommandoen over i terminalen.
+
+
+
 ## Klargjøring av robot.
 Vi bruker UR5e-robot og et sandberg USB kamera, men forskjellige typer kaemra USB kamera vil fungere. For å feste kamera til roboten har vi fått hjelp av (Adam Leon Kleppe foreleser i AIS2105) som har designet og 3d printet en brankett til dette formålet. Denne har en gjennomtenkt design, med innebygd "custom quick removal" supert og som ivaretar muligheten til å både feste et kamera samtidig som en griper er montert. Fantastisk! Branketten kan festes til roboten med 4 stk M5 skruer.
+
+
+
 
 
 <p align="center">
