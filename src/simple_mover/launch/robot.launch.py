@@ -7,9 +7,9 @@ def generate_launch_description():
     # Declare launch arguments (with sensible defaults)
     args = [
         DeclareLaunchArgument('tx', default_value='-0.36747354041927566',
-                              description='Pos X'),
+                              description='Camera Pos X'),
         DeclareLaunchArgument('ty', default_value='0.3294852403337859',
-                              description='Pos Y'),
+                              description='Camera Pos Y'),
         DeclareLaunchArgument('tz', default_value='0.6',
                               description='Pos Z'),
         DeclareLaunchArgument('rx', default_value='-0.9216443017139829',
@@ -24,6 +24,14 @@ def generate_launch_description():
                               description='Image Width'),
         DeclareLaunchArgument('image_height', default_value='480',
                               description='Image Height'),
+        DeclareLaunchArgument('sleep_x', default_value='-0.43',
+                              description='Sleep Position X'),
+        DeclareLaunchArgument('sleep_y', default_value='0.267',
+                              description='Sleep Position Y'),
+        DeclareLaunchArgument('sleep_z', default_value='0.154',
+                              description='Sleep Position Z'),
+        DeclareLaunchArgument('home', default_value='false',
+                              description='Move directly to sleep position'),
     ]
 
     # Node that spins your MoveIt! example
@@ -40,6 +48,10 @@ def generate_launch_description():
             {'ry': LaunchConfiguration('ry')},
             {'rz': LaunchConfiguration('rz')},
             {'rw': LaunchConfiguration('rw')},
+            {'sleep_x': LaunchConfiguration('sleep_x')},
+            {'sleep_y': LaunchConfiguration('sleep_y')},
+            {'sleep_z': LaunchConfiguration('sleep_z')},
+            {'home': LaunchConfiguration('home')},
         ],
     )
 

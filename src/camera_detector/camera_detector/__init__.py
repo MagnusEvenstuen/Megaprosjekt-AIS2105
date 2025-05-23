@@ -94,17 +94,29 @@ class distance_publisher_image_subscriber(Node):
             'distance_to_qube_center',
             10
         )
-        self.subscription = self.create_subscription(
+        self.image_sub = self.create_subscription(
             Image,
             '/image_raw',
             self.image_callback,
             10
         )
+
+        self.command_sub = self.create_subscription(
+            String,
+            'take_photo',
+            self.command_callback,
+            10
+        )
         self.bridge = CvBridge()
-        self.has_published = False
+        self.publish_ready = True
+
+    def command_callback(self, msg):
+        if msg.data == 'photo':
+            self.publish_ready = False
+            self.get_logger().info('Received command to take photo')
 
     def image_callback(self, msg):
-        if self.has_published:
+        if self.publish_ready:
             return
         
         cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
@@ -113,24 +125,32 @@ class distance_publisher_image_subscriber(Node):
 
         red_centers = find_colored_qubes(cv_image, find_color=0)
         if red_centers:
+            red_centers[0] = red_centers[0]*0.00061712+0.00064686*red_centers[1]-0.38990056
+            red_centers[1] = -red_centers[0]*0.00060769+0.00064989*red_centers[1]+0.2923212
             square_centers[0:2] = red_centers
 
         yellow_centers = find_colored_qubes(cv_image, find_color=1)
         if yellow_centers:
+            yellow_centers[0] = yellow_centers[0]*0.00061712+0.00064686*yellow_centers[1]-0.38990056
+            yellow_centers[1] = -yellow_centers[0]*0.00060769+0.00064989*yellow_centers[1]+0.2923212
             square_centers[2:4] = yellow_centers
             
         blue_centers = find_colored_qubes(cv_image, find_color=2)
         if blue_centers:
+            blue_centers[0] = blue_centers[0]*0.00061712+0.00064686*blue_centers[1]-0.38990056
+            blue_centers[1] = -blue_centers[0]*0.00060769+0.00064989*blue_centers[1]+0.2923212
             square_centers[4:6] = blue_centers
 
         green_centers = find_colored_qubes(cv_image, find_color=3)
         if green_centers:
+            green_centers[0] = green_centers[0]*0.00061712+0.00064686*green_centers[1]-0.38990056
+            green_centers[1] = -green_centers[0]*0.00060769+00.00064989*green_centers[1]+0.2923212
             square_centers[6:8] = green_centers
         
         publish_msg = Float64MultiArray()
         publish_msg.data = square_centers
         self.publisher.publish(publish_msg)
-        self.has_published = True
+        self.publish_ready = True
         self.get_logger().info(f'Published coordinates: {square_centers}')
 
 

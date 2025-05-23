@@ -3,6 +3,7 @@
 #include <moveit/move_group_interface/move_group_interface.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 #include <std_msgs/msg/float64_multi_array.hpp>
+#include <std_msgs/msg/string.hpp>  // Add this include
 #include <vector>
 #include <chrono>
 
@@ -71,12 +72,51 @@ int main(int argc, char *argv[])
     double ry = node->get_parameter("ry").as_double();
     double rz = node->get_parameter("rz").as_double();
     double rw = node->get_parameter("rw").as_double();
-    double home_x = node->get_parameter("tx").as_double();
-    double home_y = node->get_parameter("ty").as_double();
+    double camera_x = node->get_parameter("tx").as_double();
+    double camera_y = node->get_parameter("ty").as_double();
+    double sleep_x = node->get_parameter("sleep_x").as_double();
+    double sleep_y = node->get_parameter("sleep_y").as_double();
+    double sleep_z = node->get_parameter("sleep_z").as_double();
+    bool home_only = node->get_parameter("home").as_bool();
 
     auto logger = rclcpp::get_logger("hello_moveit2");
     using moveit::planning_interface::MoveGroupInterface;
     MoveGroupInterface move_group(node, "ur_manipulator");
+
+    geometry_msgs::msg::Pose target_pose;
+    target_pose.orientation.x = rx;
+    target_pose.orientation.y = ry;
+    target_pose.orientation.z = rz;
+    target_pose.orientation.w = rw;
+
+    if (home_only) {
+        RCLCPP_INFO(logger, "Home-only mode: Moving directly to sleep position");
+        target_pose.position.x = sleep_x;
+        target_pose.position.y = sleep_y;
+        target_pose.position.z = sleep_z;
+        moveToPosition(move_group, target_pose, logger);
+        rclcpp::shutdown();
+        return 0;
+    }
+
+    // First move to camera position
+    RCLCPP_INFO(logger, "Moving to camera position");
+    target_pose.position.x = camera_x;
+    target_pose.position.y = camera_y;
+    target_pose.position.z = 0.6;
+    moveToPosition(move_group, target_pose, logger);
+
+    // Create publisher for triggering photo
+    auto photo_trigger = node->create_publisher<std_msgs::msg::String>("take_photo", 10);
+    
+    // Wait a moment for the robot to stabilize
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    // Trigger photo
+    auto msg = std_msgs::msg::String();
+    msg.data = "photo";
+    photo_trigger->publish(msg);
+    RCLCPP_INFO(logger, "Triggered photo capture");
 
     // Wait for camera coordinates
     RCLCPP_INFO(logger, "Waiting for block coordinates...");
@@ -84,12 +124,6 @@ int main(int argc, char *argv[])
         rclcpp::spin_some(node);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-
-    geometry_msgs::msg::Pose target_pose;
-    target_pose.orientation.x = rx;
-    target_pose.orientation.y = ry;
-    target_pose.orientation.z = rz;
-    target_pose.orientation.w = rw;
 
     // Visit each valid block position
     for (const auto& block : block_positions) {
@@ -122,11 +156,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    // Return to home position
-    target_pose.position.x = home_x;
-    target_pose.position.y = home_y;
+    // Return to Home position at the end
+    target_pose.position.x = camera_x;
+    target_pose.position.y = camera_y;
     target_pose.position.z = 0.6;
-    RCLCPP_INFO(logger, "Returning to home position");
+    RCLCPP_INFO(logger, "Returning to camera home position");
     sleep(3);
     moveToPosition(move_group, target_pose, logger);
 
