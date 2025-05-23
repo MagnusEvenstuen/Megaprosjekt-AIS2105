@@ -106,9 +106,23 @@ Default gateway 143.25.151.0
 
 Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
 
-# Surface oppsett
+## Surface oppsett
+Etter å ha booten surfacen opp i ubuntu og sjekket at netverk oppsettet er riktig, kan du åpne to teminaler( hurtigtasten CTRL+ALt+T).
 
-# Oppsett på egen maskin
+I den ene terminalen kjører du følgende komando:
+
+```
+lim inn komando
+```
+og i den andre teminalen kjører du denne komandoen:
+
+```
+lim inn komando
+```
+
+Dette er to launch filer som starter opp å kjører alle nødvendige XX for at du skal kunen kjøre prosjektet. Nå vil RViz starte opp og du vil kunne bevege roboten i brukergrensesnittet. 
+
+## Oppsett på egen maskin
 
 # Viktige komandoer
 ```
