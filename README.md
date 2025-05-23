@@ -38,7 +38,7 @@ Dette prosjektet krever at du har ROS2 innstallert, du kan følge denne veiledni
 ## Nedlasting
 Når du har instalert er må du laste ned prosjektet. GÅ til den mappen du ønsker å ha prosjektet i. Høyreklikk innei mappen og i menyen som dukker opp velger du "Åpne i terminal". Lim inn følgende kommando:
 ```
-git clone 
+git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 ```
 ##IP-oppsett
   
