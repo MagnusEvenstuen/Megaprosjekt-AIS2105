@@ -2,15 +2,18 @@
 # AIS2105 - Mekatronikk og robotikk
 
 ## Innhold
-## Innhold
 - [Gruppe](#gruppe)
 - [Om prosjektet](#om-prosjektet)
 - [Hva kan roboten gjøre](#hva-kan-roboten-gjøre)
 - [Viktige komandoer](#viktige-komandoer)
 - [Oppsett](#veiledning-til-oppsett-av-prosjektet)
+  - [ROS 2](#ros-2)
   - [Nedlastinger](#nedlastinger)
+  - [Bugging](#bygging)
+  - [Klargjøring av robot](#klargjøring-av-robot)
   - [IP-oppsett](#ip-oppsett)
-  - [Oppsett i terminal](#oppsett-i-terminal)
+  - [Surface oppsett](#surface-oppsett)
+  - [Oppsett på egen maskin](#Oppsett-på-egen-maskin)
 - [Styring fra ekstern laptop](#styring-fra-extern-laptop)
 - [Build uten crash!](#build-uten-crash)
 - [Kamera](#kamera)
@@ -103,6 +106,9 @@ Default gateway 143.25.151.0
 
 Man trenger ikke bruke disse innstillingene, men som er viktig er at "Defult gateway" på din PC og surfecen og roboten er den samme. Og at IP-adressen er forskjellige for de tre enhetene.
 
+# Surface oppsett
+
+# Oppsett på egen maskin
 
 # Viktige komandoer
 ```
