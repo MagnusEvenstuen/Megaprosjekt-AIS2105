@@ -178,6 +178,13 @@ int main(int argc, char *argv[])
                 msg.data = "photo";
                 photo_trigger->publish(msg);
                 RCLCPP_INFO(logger, "Triggered photo capture");
+
+                coordinates_received = false;
+                RCLCPP_INFO(logger, "Waiting for block coordinates...");
+                while (!coordinates_received && rclcpp::ok()) {
+                    rclcpp::spin_some(node);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                }
                 
                 break;
             } else {
