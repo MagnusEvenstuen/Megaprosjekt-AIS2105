@@ -48,12 +48,10 @@ Roboten kan gå til hjemmeposisjon. Så kan den gå til kameraposisjon, så lete
 
 Dersom den ikke ser noe kube starter den en sekvens for å lete etter kuber.
 
-# Veiledning til oppsett av prosjektet
-Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem og vi bruker en UR5e-robot. Som opreativsystem har vi valgt å gjøre denne veiledningen for linux der vi bruker Ubuntu 20.04. Merk også at for å kunne følge følge denne veiledningen trenger du tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface nettbrett som er satt opp for dette prosjektet. Link til github prosjektet finner du her (sett inn link).
 
 # Veiledning til oppsett av prosjektet
 
-Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som tar deg gjennom alle nødvendige steg. Veiledningen er laget for brukere av Linux (Ubuntu 20.04) og omhandler en UR5e-robot. Merk også at du må ha tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface-nettbrett, som er forhåndskonfigurert for dette prosjektet. Link til GitHub-prosjektet finner du her (sett inn link).
+Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som tar deg gjennom alle nødvendige steg. Veiledningen er laget for brukere av Linux (Ubuntu 20.04) og omhandler en UR5e-robot. Merk også at du må ha tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface-nettbrett, som er forhåndskonfigurert for dette prosjektet. 
 
 ## ROS 2
 
