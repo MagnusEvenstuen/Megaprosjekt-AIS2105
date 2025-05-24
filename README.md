@@ -12,7 +12,7 @@
   - [ROS 2](#1-ros-2)
   - [Nedlastinger](#2-nedlastinger)
   - [Building](#3-building)
-  - [Build uten crash!](###Build-uten-crash!) 
+  - [Build uten crash!](#Build-uten-crash!) 
   - [Klargjøring av robot](#4-klargjøring-av-robot)
   - [IP-oppsett](#5-ip-oppsett)
   - [Surface oppsett](#6-surface-oppsett)
@@ -20,7 +20,6 @@
   - [Kjøring](#8-Kjøring) 
   - [Problemer?](#9-problemer?)
 - [Styring fra ekstern laptop](#styring-fra-extern-laptop)
-- [Build uten crash!](#build-uten-crash)
 - [Kamera](#kamera)
 - [Om pakkene](#om-pakkene)
 
