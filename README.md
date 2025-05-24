@@ -9,8 +9,8 @@
 - [Oppsett](#veiledning-til-oppsett-av-prosjektet)
   - [ROS 2](#ros-2)
   - [Nedlastinger](#nedlastinger)
-  - [Bugging](#bygging)
-  -  -[Build uten crash!](###Build-uten-crash!) 
+  - [Building](#building)
+  - [Build uten crash!](###Build-uten-crash!) 
   - [Klargjøring av robot](#klargjøring-av-robot)
   - [IP-oppsett](#ip-oppsett)
   - [Surface oppsett](#surface-oppsett)
@@ -56,7 +56,7 @@ git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 
 Dette vil laste ned prosjektet til mappen du åpnet terminalen i. Denne mappen blir ditt workspace for prosjektet.
 
-## Bygging
+## Building
 
 Gå til workspace-mappen, høyreklikk og velg **Åpne i terminal**. Lim inn følgende kommando for å bygge:
 
@@ -82,7 +82,7 @@ Når man skal bygge for første gang så kan pc-en kræsje. For å unngå dette 
 
 `colcon build --executor sequential`
 ```
-Dette trenger man bare å gjøre en gang. Etter det kan man bygge vanlig med:
+Dette trenger man bare å gjøre en gang. Det gjør at man bygge pakkene sekvensielt (én og én) i stedet for i parallell. Etter det kan man bygge vanlig med:
 ```
 colcon build
 ```
@@ -139,14 +139,15 @@ initial_joint_controller:=scaled_joint_trajectory_controller headless_mode:=true
   ```
 
 Åpne en ny terminal (Ctrl+ALT+T) og kopier følgende inn i terminale:
-  ```bash
+  ```
   ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=scaled_joint_trajectory_controller
   ```
 
 Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjektet. Nå vil RViz starte, og du kan styre roboten via GUI.
 
-(Sett inn bildet)
+(Sett inn bildet med piler)
+(Sett inn bilde 2 her med piler)
 
 Her kan du bruke nettbrettet til å flytte roboten på robotarmen, begynn med små bevegelser. Du trykker først på plan og etterpå på Execute. Flytter roboten på seg, bra jobbet du er nå god på vei.
 
@@ -182,7 +183,7 @@ Dersom dette ikke løser problemet, kan det være lurt å sjekke nettverkstilkob
 
 Åpne en terminal (Ctrl+Alt+T):
 
-```bash
+```
 ping 143.25.XXX.X
 
 Fungerer ikke dette, er neste steg å starte alle enhetene på nytt. Dette løser problemet i omtrent 50 % av tilfellene (men er tidkrevende).
