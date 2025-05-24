@@ -10,6 +10,7 @@
   - [ROS 2](#ros-2)
   - [Nedlastinger](#nedlastinger)
   - [Bugging](#bygging)
+    -[Build uten crash!](###Build-uten-crash! 
   - [Klargjøring av robot](#klargjøring-av-robot)
   - [IP-oppsett](#ip-oppsett)
   - [Surface oppsett](#surface-oppsett)
@@ -72,6 +73,20 @@ source install/setup.bash
 ```
 
 Dette oppdaterer miljøvariablene slik at systemet finner de nylig kompilert pakkene.
+
+### Build uten crash!
+Når man skal bygge for første gang så kan pc-en kræsje. For å unngå dette kjør følgende kommandoer:
+
+```
+`export MAKEFLAGS="-j 1"`
+
+`colcon build --executor sequential`
+```
+Dette trenger man bare å gjøre en gang. Etter det kan man bygge vanlig med:
+```
+colcon build
+```
+
 
 ## Klargjøring av robot
 
@@ -167,9 +182,9 @@ Dersom dette ikke løser problemet, kan det være lurt å sjekke nettverkstilkob
 
 Åpne en terminal (Ctrl+Alt+T):
 
-```
+```bash
 ping 143.25.XXX.X
-```
+
 Fungerer ikke dette, er neste steg å starte alle enhetene på nytt. Dette løser problemet i omtrent 50 % av tilfellene (men er tidkrevende).
 
 Har du fortsatt problemer? Da må det tilkalles ekspert-hjelp: https://www.ntnu.no/ansatte/adam.l.kleppe.
@@ -203,19 +218,6 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 ```
 
 
-# Build uten crash!
-
-Når man skal bygge for første gang så kan pc-en kræsje. For å unngå dette kjør følgende kommandoer:
-
-```
-`export MAKEFLAGS="-j 1"`
-
-`colcon build --executor sequential`
-```
-Dette trenger man bare å gjøre en gang. Etter det kan man bygge vanlig med:
-```
-colcon build
-```
 
 # Kamera
 
@@ -256,5 +258,5 @@ Posisjonen til kubene i kamera koordinat gjøres om til robotkoordinat og publis
 ### simple_mover
 Denne pakken har vi hentet en del inspirasjon til fra https://github.com/dominikbelter/ros2_ur_moveit_examples/blob/main/src/hello_moveit.cpp. Den går ut på at vi setter posisjonen og orientasjonen til armen, og bruke moveit sin inverkinematikkløser til å gå til den riktige posisjonen. Dette gir alltid endestykke riktig posisjon og orientasjon, men har en utfordring med at ikke alle joints blir satt, så noen ganger kan deler av hånda til robotarmen komme i veien for kamera. Noen ganger vil også armen ta runder for å komme til riktig posisjon, dette kommer nok av hvordan inverskinematikken er laget.
 
-### move_it
+###move_it
 Prosjektet bruker move_it til å planlegge og utføre bevegelser. Du kan lese om move_it her https://moveit.picknik.ai/main/index.html
