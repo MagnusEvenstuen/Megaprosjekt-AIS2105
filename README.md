@@ -1,6 +1,8 @@
 # Megaprosjekt -
 # AIS2105 - Mekatronikk og robotikk
 
+![forside](https://github.com/user-attachments/assets/471e2185-74b4-4740-a66b-cd0663d9b0d9)
+
 ## Innhold
 - [Gruppe](#gruppe)
 - [Om prosjektet](#om-prosjektet)
