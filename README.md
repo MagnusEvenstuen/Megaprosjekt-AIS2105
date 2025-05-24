@@ -164,8 +164,13 @@ initial_joint_controller:=scaled_joint_trajectory_controller
 
 Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjektet. Nå vil RViz starte, og du kan styre roboten via GUI.
 
-(Sett inn bildet med piler)
-(Sett inn bilde 2 her med piler)
+![Robot](https://github.com/user-attachments/assets/67df50bb-ed99-40b8-9fdc-eb3f27eaca6e)
+
+
+
+![robotEndra](https://github.com/user-attachments/assets/a437ffec-1c5c-4b81-890f-91aa5fcf3997)
+
+
 
 Her kan du bruke nettbrettet til å flytte roboten på robotarmen, begynn med små bevegelser. Du trykker først på plan og etterpå på Execute. Flytter roboten på seg, bra jobbet du er nå god på vei.
 
