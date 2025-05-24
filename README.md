@@ -310,3 +310,9 @@ Denne pakken har vi hentet en del inspirasjon til fra https://github.com/dominik
 
 ### move_it
 Prosjektet bruker move_it til å planlegge og utføre bevegelser. Du kan lese om move_it her https://moveit.picknik.ai/main/index.html
+
+
+Vår gud:
+
+![Uploading memeTemplateAdamAdam.png…]()
+
