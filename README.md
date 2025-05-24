@@ -314,5 +314,6 @@ Prosjektet bruker move_it til å planlegge og utføre bevegelser. Du kan lese om
 
 Vår gud:
 
-![Uploading memeTemplateAdamAdam.png…]()
+![memeTemplateAdamAdam](https://github.com/user-attachments/assets/3dcbdf57-e4b3-4326-ab92-95255afd9012)
+
 
