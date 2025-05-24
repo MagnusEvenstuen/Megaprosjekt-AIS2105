@@ -11,13 +11,14 @@
 - [Oppsett](#veiledning-til-oppsett-av-prosjektet)
   - [ROS 2](#1-ros-2)
   - [Nedlastinger](#2-nedlastinger)
-  - [Building](#building)
+  - [Building](#3-building)
   - [Build uten crash!](###Build-uten-crash!) 
-  - [Klargjøring av robot](#klargjøring-av-robot)
-  - [IP-oppsett](#ip-oppsett)
-  - [Surface oppsett](#surface-oppsett)
-  - [Oppsett på egen maskin](#Oppsett-på-egen-maskin)
-  - [Problemer?](#problemer?)
+  - [Klargjøring av robot](#4-klargjøring-av-robot)
+  - [IP-oppsett](#5-ip-oppsett)
+  - [Surface oppsett](#6-surface-oppsett)
+  - [Oppsett på egen maskin](#7-Oppsett-på-egen-maskin)
+  - [Kjøring](#8-Kjøring) 
+  - [Problemer?](#9-problemer?)
 - [Styring fra ekstern laptop](#styring-fra-extern-laptop)
 - [Build uten crash!](#build-uten-crash)
 - [Kamera](#kamera)
@@ -206,10 +207,10 @@ Om home parameteren som har standardverdien "false" blir satt til "true" så vil
 
 Og legge til 'motionPlanning' med ADD funksjonen. Man kan så gå inn på 'joints', gjøre endringer, så trykke 'plan' og 'execute'. Da skal roboten flytte seg. 
 
-## Kjøring
+## 8 Kjøring
 Du kan nå plassere kuber på bordet. Når du kjører launch filen vil kamera gjennkjenne kubene, roboten vil først flytte seg til rød, så til gul, så til blå også videre til grønn, til slutt vil den gå tilbake til home posisjon. 
 
-## Problemer?
+## 9 Problemer?
 
 Om du får problemer, er det ikke nødvendigvis din feil, roboten kan bare ha en dårlig dag. Vi anbefaler å snakke rolig med den, spørre pent og stryke den forsiktig før og under kjøring. Dette kan hjelpe roboten til å føle seg bedre, og plutselig begynne å fungere.
 
