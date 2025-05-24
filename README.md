@@ -53,12 +53,12 @@ Dersom den ikke ser noe kube starter den en sekvens for å lete etter kuber.
 
 Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som tar deg gjennom alle nødvendige steg. Veiledningen er laget for brukere av Linux (Ubuntu 20.04) og omhandler en UR5e-robot. Merk også at du må ha tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface-nettbrett, som er forhåndskonfigurert for dette prosjektet. 
 
-## ROS 2
+## 1. ROS 2
 
 Dette prosjektet krever at du har ROS 2 installert. Du kan følge denne veiledningen:  
 https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html
 
-## Nedlasting
+## 2. Nedlasting
 
 Etter at du har installert ROS 2, må du laste ned prosjektet. Gå til mappen der du vil ha prosjektet, høyreklikk og velg **Åpne i terminal**. Lim inn kommandoen:
 
@@ -68,7 +68,7 @@ git clone https://github.com/MagnusEvenstuen/Megaprosjekt-AIS2105.git
 
 Dette vil laste ned prosjektet til mappen du åpnet terminalen i. Denne mappen blir ditt workspace for prosjektet.
 
-## Building
+## 3. Building
 
 Gå til workspace-mappen, høyreklikk og velg **Åpne i terminal**. Lim inn følgende kommando for å bygge:
 
@@ -101,7 +101,7 @@ colcon build
 ```
 
 
-## Klargjøring av robot
+## 4. Klargjøring av robot
 
 Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal supports”, som gjør det enkelt å montere både kamera og griper samtidig. Braketten festes til roboten med fire M5-skruer.
 
@@ -137,7 +137,7 @@ Det er ikke nødvendig å bruke akkurat disse, men viktig at default gateway er 
 5. Bytt modus fra **Lokal** til **Remote** på roboten.  
    ![Lokal/Remote](https://github.com/user-attachments/assets/63d2118e-f250-4130-b8ab-54633cfa4819)
 
-## Surface-oppsett
+## 5. Surface-oppsett
 
 Etter at Surface-maskinen har startet opp i Ubuntu og nettverksinnstillingene er verifisert, åpner du en terminaler (Ctrl+Alt+T).
 
@@ -171,7 +171,7 @@ Etter kjøring av launch filene, skal rviz dukke opp med noe lignende bildet ove
 For å teste om Moveit kan bevege roboten så kan man dra i den "blå ballen" pil (1), så trykke på "Plan &amp; execute" pil(2) og så skal roboten flytte seg til den valgte posisjonen. Start gjerne med en liten men merkbar bevegelse for å forsikre at bevegelsen ikke treffer på en singularitet. Om alt fungerer så langt så er du på god vei!
 
 
-## Kjøring fra egen maskin
+## 6. Kjøring fra egen maskin
 
 Start med å sette den samme doimain ID-en som på surfacen tidligere:
 
