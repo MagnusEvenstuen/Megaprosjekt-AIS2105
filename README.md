@@ -21,6 +21,8 @@
 - [Kamera](#kamera)
 - [Om pakkene](#om-pakkene)
 
+
+
 # Gruppe
 Prosjektgruppe 163
 
@@ -28,11 +30,21 @@ Eldar Helseth &amp;
 Oliver Steinnes Gundersen &amp;
 Magnus Evenstuen
 
+
+
 # Om prosjektet
 I dette prosjektet skal vi kombinere bildebehandling og robotstyring. Vi bruker en UR5e-robot med et xxxx kamera og flytter rundt på kuber. 
 
+
+
 # Hva kan roboten gjøre
-Gå til hjemmeposisjon, scanne arbeisområde, gjennkjenne kuber etter farger, plukke opp kuber i denne rekkefølgen. 
+Roboten kan gå til hjemmeposisjon. Så kan den gå til kameraposisjon, så leter den etter kuber, også kan den  gå til hver av kubene i denne rekkefølgen:
+1. Rød
+2. Gul
+3. Blå
+4. Grønn
+
+Dersom den ikke ser noe kube starter den en sekvens for å lete etter kuber.
 
 # Veiledning til oppsett av prosjektet
 Dersom du ønsker å kjøre prosjektet, kan du følge denne veiledningen som vil ta deg gjennom alle stegene du er nødt å gjøre. Veiledningen er laget for de som bruker Linux operativsystem og vi bruker en UR5e-robot. Som opreativsystem har vi valgt å gjøre denne veiledningen for linux der vi bruker Ubuntu 20.04. Merk også at for å kunne følge følge denne veiledningen trenger du tilgang til Adam Leon Kleppe (foreleser i AIS2105) sin Microsoft Surface nettbrett som er satt opp for dette prosjektet. Link til github prosjektet finner du her (sett inn link).
