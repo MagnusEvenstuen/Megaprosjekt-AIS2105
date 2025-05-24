@@ -316,11 +316,15 @@ Vår gud:
 
 ![memeTemplateAdamAdam](https://github.com/user-attachments/assets/3dcbdf57-e4b3-4326-ab92-95255afd9012)
 
-Video fra prosjeket:
+# Video fra prosjeket:
 
 
 
 
 https://github.com/user-attachments/assets/ace8ee86-3726-42e3-93b0-7016f1b89c96
 
+
+
+
+https://github.com/user-attachments/assets/9757e7fc-8c5f-481d-886a-b7b0235f3ff2
 
