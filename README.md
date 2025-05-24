@@ -74,9 +74,9 @@ Dette oppdaterer miljøvariablene slik at systemet finner de nylig kompilert pak
 
 ## Klargjøring av robot
 
-Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal”, som gjør det enkelt å montere både kamera og griper. Braketten festes til roboten med fire M5-skruer.
+Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal supports”, som gjør det enkelt å montere både kamera og griper. Braketten festes til roboten med fire M5-skruer.
 
-<p align="center">
+<p align="center"> 
   <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="Robot uten feste" width="300" />
   <img src="https://github.com/user-attachments/assets/d0a31847-35da-477d-a555-6f6326f17163" alt="Kamera feste" width="300" />
 </p>
