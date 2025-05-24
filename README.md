@@ -10,7 +10,7 @@
 - [Viktige komandoer](#viktige-komandoer)
 - [Oppsett](#veiledning-til-oppsett-av-prosjektet)
   - [1 ROS 2](#1-ros-2)
-  - [2 Nedlastinger](#2-nedlastinger)
+  - [2 Nedlastinger](#2-nedlasting)
   - [3 Building](#3-building)
   - [4 Build uten crash!](#Build-uten-crash!) 
   - [5 Klargjøring av robot](#4-klargjøring-av-robot)
