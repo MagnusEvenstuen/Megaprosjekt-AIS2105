@@ -18,7 +18,7 @@
   - [Surface oppsett](#6-surface-oppsett)
   - [Oppsett på egen maskin](#7-Oppsett-på-egen-maskin)
   - [Kjøring](#8-Kjøring) 
-  - [Problemer?](#9-problemer?)
+  - [Problemer?](#9-problemer)
 - [Kamera](#kamera)
 - [Om pakkene](#om-pakkene)
 
