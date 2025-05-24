@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
     );
 
     auto position_publisher = node->create_publisher<geometry_msgs::msg::Point>(
-    "target_position", 10);
+    "target_position", 500);
 
     // Create subscription to camera coordinates
     auto subscription = node->create_subscription<std_msgs::msg::Float64MultiArray>(
-        "distance_to_qube_center", 10, coordinateCallback);
+        "distance_to_qube_center", 500, coordinateCallback);
 
     // Get initial pose parameters
     double rx = node->get_parameter("rx").as_double();
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
     moveToPosition(move_group, target_pose, logger, position_publisher);
 
     // Create publisher for triggering photo
-    auto photo_trigger = node->create_publisher<std_msgs::msg::String>("take_photo", 10);
+    auto photo_trigger = node->create_publisher<std_msgs::msg::String>("take_photo", 500);
     
     // Wait a moment for the robot to stabilize
     std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -149,22 +149,45 @@ int main(int argc, char *argv[])
             } else{
                 target_pose.position.x = camera_x + 0.2;
                 target_pose.position.y = camera_y - 0.2;
-            }
-
-            moveToPosition(move_group, target_pose, logger, position_publisher);
-            
-            sleep(2);
-            auto msg = std_msgs::msg::String();
-            msg.data = "photo";
-            photo_trigger->publish(msg);
-            RCLCPP_INFO(logger, "Triggered photo capture");
-            
-            conter++;
-            break;
+            }}
+        else {
+            notFound = false;
         }
     }
 
-    if (notFound){
+    while (notFound){
+        for (const auto& block : block_positions){
+            if (!block.valid){
+                notFound = true;
+                
+                if (conter % 3 == 0){
+                    target_pose.position.x = camera_x + 0.2;
+                    target_pose.position.y = camera_y + 0.2;
+                } else if (conter % 3 == 1){
+                    target_pose.position.x = camera_x - 0.2;
+                    target_pose.position.y = camera_y - 0.2;
+                } else{
+                    target_pose.position.x = camera_x + 0.2;
+                    target_pose.position.y = camera_y - 0.2;
+                }
+
+                moveToPosition(move_group, target_pose, logger, position_publisher);
+                
+                sleep(2);
+                auto msg = std_msgs::msg::String();
+                msg.data = "photo";
+                photo_trigger->publish(msg);
+                RCLCPP_INFO(logger, "Triggered photo capture");
+                
+                break;
+            } else {
+                notFound = false;
+            }
+        }
+        conter++;
+    }
+
+    if (!notFound){
     // Visit each valid block position
         for (const auto& block : block_positions) {
             if (!block.valid) continue;
