@@ -167,9 +167,9 @@ Dersom dette ikke løser problemet, kan det være lurt å sjekke nettverkstilkob
 
 Åpne en terminal (Ctrl+Alt+T):
 
-```bash
+```
 ping 143.25.XXX.X
-
+```
 Fungerer ikke dette, er neste steg å starte alle enhetene på nytt. Dette løser problemet i omtrent 50 % av tilfellene (men er tidkrevende).
 
 Har du fortsatt problemer? Da må det tilkalles ekspert-hjelp: https://www.ntnu.no/ansatte/adam.l.kleppe.
