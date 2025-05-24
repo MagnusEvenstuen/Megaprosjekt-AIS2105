@@ -10,7 +10,7 @@
   - [ROS 2](#ros-2)
   - [Nedlastinger](#nedlastinger)
   - [Bugging](#bygging)
-    -[Build uten crash!](###Build-uten-crash!) 
+  -  -[Build uten crash!](###Build-uten-crash!) 
   - [Klargjøring av robot](#klargjøring-av-robot)
   - [IP-oppsett](#ip-oppsett)
   - [Surface oppsett](#surface-oppsett)
