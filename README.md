@@ -204,7 +204,7 @@ ros2 launch simple_mover robot.launch.py home:=true
 Om home parameteren som har standardverdien "false" blir satt til "true" så vil roboten kjøre til den valgte hjem posisjonen, så stopper programmet.
 
 
-Og legge til 'motionPlanning' med ADD funksjonen. Man kan så gå inn på 'joints', gjøre endringer, så trykke 'plan' og 'execute'. Da skal roboten flytte seg. 
+
 
 ## 8 Kjøring
 Du kan nå plassere kuber på bordet. Når du kjører launch filen vil kamera gjennkjenne kubene, roboten vil først flytte seg til rød, så til gul, så til blå også videre til grønn, til slutt vil den gå tilbake til home posisjon. 
@@ -234,30 +234,20 @@ colcon build # Bygger alle pakkene i workspace
 ```
 
 ```
-colcon build --packages-select qube_bringup  # Bygger kun den spesifiserte pakken
+colcon build --packages-select <pakken_din>  # Bygger kun den spesifiserte pakken
 ```
 
 ```
-source install/setup.bash  # Kilde oppsett etter bygging
+source install/setup.bash  # Kilde oppsett etter bygging. Denne må kjøres i alle nye terminaler
 ```
 
 ```
 ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller headless_mode:=true
+initial_joint_controller:=scaled_joint_trajectory_controller headless_mode:=true # Starter robot driver
 ```
 
 ```
-ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller
-```
-
-```
-ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
-initial_joint_controller:=joint_trajectory_controller
-```
-
-```
-ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
+ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true # Starter MoveIt
 ```
 
 
