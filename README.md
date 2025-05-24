@@ -16,7 +16,7 @@
   - [Klargjøring av robot](#4-klargjøring-av-robot)
   - [IP-oppsett](#5-ip-oppsett)
   - [Surface oppsett](#6-surface-oppsett)
-  - [Oppsett på egen maskin](#7-Oppsett-på-egen-maskin)
+  - [Oppsett på egen maskin](#7-Kjøring-fra-egen-maskin)
   - [Kjøring](#8-Kjøring) 
   - [Problemer?](#9-problemer)
 - [Kamera](#kamera)
