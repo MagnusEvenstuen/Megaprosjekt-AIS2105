@@ -83,6 +83,7 @@ Når man skal bygge for første gang så kan pc-en kræsje. For å unngå dette 
 `colcon build --executor sequential`
 ```
 Dette trenger man bare å gjøre en gang. Det gjør at man bygge pakkene sekvensielt (én og én) i stedet for i parallell. Etter det kan man bygge vanlig med:
+
 ```
 colcon build
 ```
@@ -129,20 +130,23 @@ Det er ikke nødvendig å bruke akkurat disse, men viktig at default gateway er 
 Etter at Surface-maskinen har startet opp i Ubuntu og nettverksinnstillingene er verifisert, åpner du en terminaler (Ctrl+Alt+T).
 
 Start med å sette den samme doimain ID-en som på surfacen tidligere:
+
 ```
 export ROS_DOMAIN_ID=X
-
+```
 Etterpå kan du kopiere denne lauch filen I terminale:
-  ```
+
+```
   ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=scaled_joint_trajectory_controller headless_mode:=true
-  ```
+```
 
 Åpne en ny terminal (Ctrl+ALT+T) og kopier følgende inn i terminale:
-  ```
+
+```
   ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=scaled_joint_trajectory_controller
-  ```
+```
 
 Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjektet. Nå vil RViz starte, og du kan styre roboten via GUI.
 
@@ -154,18 +158,21 @@ Her kan du bruke nettbrettet til å flytte roboten på robotarmen, begynn med sm
 ## Kjøring fra egen maskin
 
 Start med å sette den samme doimain ID-en som på surfacen tidligere:
+
 ```
 export ROS_DOMAIN_ID=X
 ```
 
 Sjekk at 'topics' kan leses på laptoppen med:
+
 ```
 ros2 topic list
 ```
+
 Om du er tilkoblet roboten og surfacen så skal det dukke opp mange topics i terminalen. Om du bare får 2-3 stk, så er det ikke sikkert du har kontakt.
 
-
 Deretter kan man kjøre:
+
 ```
 ros2 run rviz2 rviz2
 ```
@@ -185,6 +192,7 @@ Dersom dette ikke løser problemet, kan det være lurt å sjekke nettverkstilkob
 
 ```
 ping 143.25.XXX.X
+```
 
 Fungerer ikke dette, er neste steg å starte alle enhetene på nytt. Dette løser problemet i omtrent 50 % av tilfellene (men er tidkrevende).
 
@@ -193,27 +201,34 @@ Har du fortsatt problemer? Da må det tilkalles ekspert-hjelp: https://www.ntnu.
 
 
 # Viktige komandoer
+
 ```
 colcon build # Bygger alle pakkene i workspace
 ```
+
 ```
 colcon build --packages-select qube_bringup  # Bygger kun den spesifiserte pakken
 ```
+
 ```
 source install/setup.bash  # Kilde oppsett etter bygging
 ```
+
 ```
 ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=joint_trajectory_controller headless_mode:=true
 ```
+
 ```
 ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=joint_trajectory_controller
 ```
+
 ```
 ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=joint_trajectory_controller
 ```
+
 ```
 ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 ```
@@ -223,26 +238,31 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=urX launch_rviz:=true
 # Kamera
 
 Kjør integrert kamera:
+
 ```
 ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0
 ```
 
 Kjør tilkobla usb-kamera:
+
 ```
 ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video2
 ```
 
 Kjør kamera med kalibreringfil:
+
 ```
 ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0 -p camera_info_url:=file:///home/user/ost.yaml # Pass på riktig plassering / filnamn
 ```
 
 Kalibrering (kameraet må kjøre i en egen terminal for å kalibrere): 
+
 ```
 ros2 run camera_calibration cameracalibrator   --size 7x9   --square 0.02 --no-service-check   --ros-args   -r image:=/image_raw   -r camera_info:=/camera_info   -r set_camera_info:=/usb_cam/set_camera_info  # Husk å sjekk riktig antal ruter/ størrelse på rutene
 ```
 
 Om kamera ikkje kjører, bruk denne kommandoen for å finne alle kamera tilkopla PC-en:
+
 ```
 v4l2-ctl --list-devices
 ```
