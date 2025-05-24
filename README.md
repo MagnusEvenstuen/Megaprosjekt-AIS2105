@@ -8,7 +8,7 @@
 - [Om prosjektet](#om-prosjektet)
 - [Hva kan roboten gjøre](#hva-kan-roboten-gjøre)
 - [Viktige komandoer](#viktige-komandoer)
-- [Oppsett](#veiledning-til-oppsett-av-prosjektet)
+- [Veiledning til oppsett av prosjektet](#veiledning-til-oppsett-av-prosjektet)
   - [1 ROS 2](#1-ros-2)
   - [2 Nedlastinger](#2-nedlasting)
   - [3 Building](#3-building)
