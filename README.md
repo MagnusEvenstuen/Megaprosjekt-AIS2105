@@ -166,13 +166,12 @@ Disse to launch-filene starter alle nødvendige tjenester for å kjøre prosjekt
 
 ![Robot](https://github.com/user-attachments/assets/67df50bb-ed99-40b8-9fdc-eb3f27eaca6e)
 
-
+Etter kjøring av launch filene, skal rviz dukke opp med noe lignende bildet over. Posisjonen på roboten i Rviz skal være lik den faktiske posisjonen på roboten som er tilkoblet
 
 ![robotEndra](https://github.com/user-attachments/assets/a437ffec-1c5c-4b81-890f-91aa5fcf3997)
 
+For å teste om Moveit kan bevege roboten så kan man dra i den "blå ballen" pil (1), så trykke på "Plan &amp; execute" pil(2) og så skal roboten flytte seg til den valgte posisjonen. Start gjerne med en liten men merkbar bevegelse for å forsikre at bevegelsen ikke treffer på en singularitet. Om alt fungerer så langt så er du på god vei!
 
-
-Her kan du bruke nettbrettet til å flytte roboten på robotarmen, begynn med små bevegelser. Du trykker først på plan og etterpå på Execute. Flytter roboten på seg, bra jobbet du er nå god på vei.
 
 ## Kjøring fra egen maskin
 
@@ -190,11 +189,22 @@ ros2 topic list
 
 Om du er tilkoblet roboten og surfacen så skal det dukke opp mange topics i terminalen. Om du bare får 2-3 stk, så er det ikke sikkert du har kontakt.
 
-Deretter kan man kjøre:
+Deretter kjører man launch fila i simple_mover:
 
 ```
-ros2 run rviz2 rviz2
+ros2 launch simple_mover robot.launch.py
 ```
+
+Då skal roboten gå til "camera_home" hvor den tar et bilde og leter etter 4 bokser. En rød, en gul en blå og en grønn. Så vil roboten gå å nært og "se" på alle boksene i den rekkefølgen. Alle bevegelsene til roboten er delt to, så først beveger den seg langs x og y, før den skifter mellom z 0.2 og 0.6. Alle bevegelsene har også eitt delay på 3 sekunder for å sikre at roboten får fullført bevegelsen sin før den begynner på en ny en. Om roboten ikke ser alle fire boksene på bildet som er tatt så vil den gå inn i søkemodus.
+
+Når man kjører launch fila så kan man også legge til eit parameter for å kjøre roboten heim eller i "sleep":
+
+```
+ros2 launch simple_mover robot.launch.py home:=true
+```
+
+Om home parameteren som har standardverdien "false" blir satt til "true" så vil roboten kjøre til den valgte hjem posisjonen, så stopper programmet.
+
 
 Og legge til 'motionPlanning' med ADD funksjonen. Man kan så gå inn på 'joints', gjøre endringer, så trykke 'plan' og 'execute'. Da skal roboten flytte seg. 
 
