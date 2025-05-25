@@ -296,6 +296,10 @@ Posisjonen til kubene i kamera koordinat gjøres om til robotkoordinat og publis
 ### simple_mover
 Denne pakken har vi hentet en del inspirasjon til fra https://github.com/dominikbelter/ros2_ur_moveit_examples/blob/main/src/hello_moveit.cpp. Den går ut på at vi setter posisjonen og orientasjonen til armen, og bruke moveit sin inverkinematikkløser til å gå til den riktige posisjonen. Dette gir alltid endestykke riktig posisjon og orientasjon, men har en utfordring med at ikke alle joints blir satt, så noen ganger kan deler av hånda til robotarmen komme i veien for kamera. Noen ganger vil også armen ta runder for å komme til riktig posisjon, dette kommer nok av hvordan inverskinematikken er laget.
 
+Pakken tar inn 4 x og y koordinat i en array og flytter seg til de posisjonene i den rekkefølgen den får de inn. Verdiene den får inn skal være mellom -1 og 1. Den flytter i 2 steg. Først i x og y planet før den flytter seg ned i z planet til en hardkodet posisjon. Hvis den får inn verdien -1000 som en av koordinatene vil den gå i søkemodus, der den beveger seg rundt. 
+
+Pakken har også en launch fil som launcher denne pakken og camera_detector pakken. Launch fila tar inn posisjonen roboten skal gå til for å ta bilde og om den skal til sleep posisjon som er en posisjon der den er sammenbrettet over bordet for å ikke være i veien og enklere og flytte på. Den tar også inn størrelsen på bildet i kameraet. 
+
 ### move_it
 Prosjektet bruker move_it til å planlegge og utføre bevegelser. Du kan lese om move_it her https://moveit.picknik.ai/main/index.html
 
