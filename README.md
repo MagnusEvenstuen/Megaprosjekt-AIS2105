@@ -146,14 +146,14 @@ Start med å sette den samme domain ID-en som på surfacen tidligere:
 ```
 export ROS_DOMAIN_ID=X
 ```
-Etterpå kan du kopiere denne lauch filen I terminale:
+Etterpå kan du kopiere denne launch filen I terminalen:
 
 ```
   ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX ​robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
 initial_joint_controller:=scaled_joint_trajectory_controller headless_mode:=true
 ```
 
-Åpne en ny terminal (Ctrl+ALT+T) og kopier følgende inn i terminale:
+Åpne en ny terminal (Ctrl+ALT+T) og kopier følgende inn i terminalen:
 
 ```
   ros2 launch ros2 launch ur_robot_driver ur_control.launch.py ur_type:=urX robot_ip:=yyy.yyy.yyy.yyy use_mock_hardware:=false
@@ -168,7 +168,7 @@ Etter kjøring av launch filene, skal rviz dukke opp med noe lignende bildet ove
 
 ![robotEndra](https://github.com/user-attachments/assets/a437ffec-1c5c-4b81-890f-91aa5fcf3997)
 
-For å teste om Moveit kan bevege roboten så kan man dra i den "blå ballen" pil (1), så trykke på "Plan &amp; execute" pil(2) og så skal roboten flytte seg til den valgte posisjonen. Start gjerne med en liten men merkbar bevegelse for å forsikre at bevegelsen ikke treffer på en singularitet. Om alt fungerer så langt så er du på god vei!
+For å teste om Moveit kan bevege roboten så kan man dra i den "blå ballen" pil (1), så trykke på "Plan &amp; execute" pil (2) og så skal roboten flytte seg til den valgte posisjonen. Start gjerne med en liten men merkbar bevegelse for å forsikre at bevegelsen ikke treffer på en singularitet. Om alt fungerer så langt så er du på god vei!
 
 
 ## 7 Kjøring fra egen maskin
@@ -193,15 +193,15 @@ Deretter kjører man launch fila i simple_mover:
 ros2 launch simple_mover robot.launch.py
 ```
 
-Då skal roboten gå til "camera_home" hvor den tar et bilde og leter etter 4 bokser. En rød, en gul en blå og en grønn, så vil roboten gå nært og "se" på alle boksene i den rekkefølgen. Alle bevegelsene til roboten er delt to, så først beveger den seg langs x og y, før den skifter mellom z 0.2 og 0.6. Alle bevegelsene har også eitt delay på 3 sekunder for å sikre at roboten får fullført bevegelsen sin før den begynner på en ny en. Om roboten ikke ser alle fire boksene på bildet som er tatt så vil den gå inn i søkemodus.
+Da skal roboten gå til "camera_home" hvor den tar et bilde og leter etter 4 bokser. En rød, en gul en blå og en grønn, så vil roboten gå nært og "se" på alle boksene i den rekkefølgen. Alle bevegelsene til roboten er delt i to, så først beveger den seg langs x og y, før den skifter mellom z 0.2 og 0.6. Alle bevegelsene har også ett delay på 3 sekunder for å sikre at roboten får fullført bevegelsen sin før den begynner på en ny en. Om roboten ikke ser alle fire boksene på bildet som er tatt så vil den gå inn i søkemodus.
 
-Når man kjører launch fila så kan man også legge til eit parameter for å kjøre roboten heim eller i "sleep":
+Når man kjører launch fila så kan man også legge til et parameter for å kjøre roboten home eller i "sleep":
 
 ```
 ros2 launch simple_mover robot.launch.py home:=true
 ```
 
-Om home parameteren som har standardverdien "false" blir satt til "true" så vil roboten kjøre til den valgte hjem posisjonen, så stopper programmet.
+Om "home" parameteren som har standardverdien "false" blir satt til "true" så vil roboten kjøre til den valgte home posisjonen, så stopper programmet.
 
 
 
@@ -260,7 +260,7 @@ Kjør integrert kamera:
 ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0
 ```
 
-Kjør tilkobla usb-kamera:
+Kjør tilkoblet usb-kamera:
 
 ```
 ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video2
@@ -278,7 +278,7 @@ Kalibrering (kameraet må kjøre i en egen terminal for å kalibrere):
 ros2 run camera_calibration cameracalibrator   --size 7x9   --square 0.02 --no-service-check   --ros-args   -r image:=/image_raw   -r camera_info:=/camera_info   -r set_camera_info:=/usb_cam/set_camera_info  # Husk å sjekk riktig antal ruter/ størrelse på rutene
 ```
 
-Om kamera ikkje kjører, bruk denne kommandoen for å finne alle kamera tilkopla PC-en:
+Om kamera ikke kjører, bruk denne kommandoen for å finne alle kamera tilkoplet PC-en:
 
 ```
 v4l2-ctl --list-devices
@@ -304,7 +304,7 @@ Pakken har også en launch fil som launcher denne pakken og camera_detector pakk
 Prosjektet bruker move_it til å planlegge og utføre bevegelser. Du kan lese om move_it her https://moveit.picknik.ai/main/index.html
 
 
-# Video fra prosjeket:
+# Videoer fra prosjeket:
 
 
 
