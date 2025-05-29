@@ -103,7 +103,7 @@ colcon build
 
 ## 4 Klargjøring av robot
 
-Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett med “custom quick removal supports”, som gjør det enkelt å montere både kamera og griper samtidig. Braketten festes til roboten med fire M5-skruer.
+Vi bruker en UR5e-robot og et Sandberg USB-kamera (andre USB-kameraer fungerer også). For å feste kameraet har Adam Leon Kleppe designet og 3D-printet en brakett som gjør det enkelt å montere både kamera og griper samtidig. Braketten festes til roboten med fire M5-skruer.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ca00e5b0-8544-4d61-baa7-097da6e12eba" alt="Robot uten feste" width="300" />
